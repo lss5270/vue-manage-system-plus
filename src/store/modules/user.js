@@ -62,7 +62,7 @@ const actions = {
 				if (!res){
 					return
 				}
-				commit('DO_LOGIN', { userInfo: res })
+				commit('DO_LOGIN', { userInfo: res.body })
 				rs(res)
 			}).catch(err=>{
 				rj(err)
