@@ -1,0 +1,7 @@
+# 忽略打包的文件
+unpackage
+node_modules
+static
+.eslintrc.js
+src/mock
+

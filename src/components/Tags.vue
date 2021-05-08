@@ -1,111 +1,128 @@
 <template>
-    <div class="tags" v-if="showTags">
-        <ul>
-            <li
-                class="tags-li"
-                v-for="(item,index) in tagsList"
-                :class="{'active': isActive(item.path)}"
-                :key="index"
-            >
-                <router-link :to="item.path" class="tags-li-title">{{item.title}}</router-link>
-                <span class="tags-li-icon" @click="closeTags(index)">
-                    <i class="el-icon-close"></i>
-                </span>
-            </li>
-        </ul>
-        <div class="tags-close-box">
-            <el-dropdown @command="handleTags">
-                <el-button size="mini" type="primary">
-                    标签选项
-                    <i class="el-icon-arrow-down el-icon--right"></i>
-                </el-button>
-                <template #dropdown>
-                    <el-dropdown-menu size="small">
-                        <el-dropdown-item command="other">关闭其他</el-dropdown-item>
-                        <el-dropdown-item command="all">关闭所有</el-dropdown-item>
-                    </el-dropdown-menu>
-                </template>
-            </el-dropdown>
-        </div>
-    </div>
+	<div
+		v-if="showTags"
+		class="tags"
+	>
+		<ul>
+			<li
+				v-for="(item,index) in tagsList"
+				:key="index"
+				class="tags-li"
+				:class="{'active': isActive(item.path)}"
+			>
+				<router-link
+					:to="item.path"
+					class="tags-li-title"
+				>
+					{{ item.title }}
+				</router-link>
+				<span
+					class="tags-li-icon"
+					@click="closeTags(index)"
+				>
+					<i class="el-icon-close" />
+				</span>
+			</li>
+		</ul>
+		<div class="tags-close-box">
+			<el-dropdown @command="handleTags">
+				<el-button
+					size="mini"
+					type="primary"
+				>
+					标签选项
+					<i class="el-icon-arrow-down el-icon--right" />
+				</el-button>
+				<template #dropdown>
+					<el-dropdown-menu size="small">
+						<el-dropdown-item command="other">
+							关闭其他
+						</el-dropdown-item>
+						<el-dropdown-item command="all">
+							关闭所有
+						</el-dropdown-item>
+					</el-dropdown-menu>
+				</template>
+			</el-dropdown>
+		</div>
+	</div>
 </template>
 
 <script>
 export default {
-    computed: {
-        tagsList() {
-            return this.$store.state.tagsList;
-        },
-        showTags() {
-            return this.tagsList.length > 0;
-        }
-    },
-    methods: {
-        isActive(path) {
-            return path === this.$route.fullPath;
-        },
-        // 关闭单个标签
-        closeTags(index) {
-            const delItem = this.tagsList[index];
-            this.$store.commit("delTagsItem", { index });
-            const item = this.tagsList[index]
-                ? this.tagsList[index]
-                : this.tagsList[index - 1];
-            if (item) {
-                delItem.path === this.$route.fullPath &&
+	computed: {
+		tagsList() {
+			return this.$store.state.system.tagsList;
+		},
+		showTags() {
+			return this.tagsList.length > 0;
+		}
+	},
+	watch: {
+		$route(newValue) {
+			this.setTags(newValue);
+		}
+	},
+	created() {
+		this.setTags(this.$route);
+		// 关闭当前页面的标签页
+		// this.$store.commit("closeCurrentTag", {
+		//     $router: this.$router,
+		//     $route: this.$route
+		// });
+	},
+	methods: {
+		isActive(path) {
+			return path === this.$route.fullPath;
+		},
+		// 关闭单个标签
+		closeTags(index) {
+			const delItem = this.tagsList[index];
+			this.$store.commit('system/delTagsItem', { index });
+			const item = this.tagsList[index]
+				? this.tagsList[index]
+				: this.tagsList[index - 1];
+			if (item) {
+				delItem.path === this.$route.fullPath &&
                     this.$router.push(item.path);
-            } else {
-                this.$router.push("/");
-            }
-        },
-        // 关闭全部标签
-        closeAll() {
-            this.$store.commit("clearTags");
-            this.$router.push("/");
-        },
-        // 关闭其他标签
-        closeOther() {
-            const curItem = this.tagsList.filter(item => {
-                return item.path === this.$route.fullPath;
-            });
-            this.$store.commit("closeTagsOther", curItem);
-        },
-        // 设置标签
-        setTags(route) {
-            const isExist = this.tagsList.some(item => {
-                return item.path === route.fullPath;
-            });
-            if (!isExist) {
-                if (this.tagsList.length >= 8) {
-                    this.$store.commit("delTagsItem", { index: 0 });
-                }
-                this.$store.commit("setTagsItem", {
-                    name: route.name,
-                    title: route.meta.title,
-                    path: route.fullPath
-                });
-            }
-        },
-        handleTags(command) {
-            command === "other" ? this.closeOther() : this.closeAll();
-        }
-    },
-    watch: {
-        $route(newValue) {
-            this.setTags(newValue);
-        }
-    },
-    created() {
-        this.setTags(this.$route);
-        // 关闭当前页面的标签页
-        // this.$store.commit("closeCurrentTag", {
-        //     $router: this.$router,
-        //     $route: this.$route
-        // });
-    }
+			} else {
+				this.$router.push('/');
+			}
+		},
+		// 关闭全部标签
+		closeAll() {
+			this.$store.commit('system/clearTags');
+			this.$router.push('/');
+		},
+		// 关闭其他标签
+		closeOther() {
+			const curItem = this.tagsList.filter(item => {
+				return item.path === this.$route.fullPath;
+			});
+			this.$store.commit('system/closeTagsOther', curItem);
+		},
+		// 设置标签
+		setTags(route) {
+			const isExist = this.tagsList.some(item => {
+				return item.path === route.fullPath;
+			});
+			if (!isExist) {
+				if (this.tagsList.length >= 8) {
+					this.$store.commit('system/delTagsItem', { index: 0 });
+				}
+				this.$store.commit('system/setTagsItem', {
+					name: route.name,
+					title: route.meta.title,
+					path: route.fullPath
+				});
+			}
+		},
+		handleTags(command) {
+			command === 'other' ? this.closeOther() : this.closeAll();
+		}
+	}
 };
 </script>
-
 
 <style>
 .tags {

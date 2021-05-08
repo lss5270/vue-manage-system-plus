@@ -18,12 +18,12 @@ import messages from '../utils/i18n'
 // }
 
 const i18n = createI18n({
-  locale: localeZH.name,
-  fallbackLocale: localeEN.name,
-  messages,
+	locale: localeZH.name,
+	fallbackLocale: localeEN.name,
+	messages,
 })
 
 export default (app) => {
-  app.use(ElementPlus, { locale:localeZH })
-  app.use(i18n)
+	app.use(ElementPlus, { locale: localeZH })
+	app.use(i18n)
 }
