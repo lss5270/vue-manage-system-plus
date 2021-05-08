@@ -29,6 +29,7 @@
         "babel-eslint": "~10.1.0",
         "eslint": "~6.8.0",
         "eslint-plugin-vue": "~7.7.0",
+        "mockjs": "^1.1.0",
         "sass": "~1.32.8",
         "sass-loader": "~8.0.2",
         "vue-cli-plugin-element-plus": "0.0.13",
