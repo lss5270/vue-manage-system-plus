@@ -1,4 +1,4 @@
-import {createApp} from 'vue'
+import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -12,6 +12,6 @@ if (process.env.NODE_ENV !== 'production') {	// 开发环境使用mock进行http
 const app = createApp(App)
 installElementPlus(app)
 app
-    .use(store)
-    .use(router)
-    .mount('#app')
+	.use(store)
+	.use(router)
+	.mount('#app')
