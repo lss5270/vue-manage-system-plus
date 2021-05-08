@@ -1,85 +1,116 @@
 <template>
-    <div class="header">
-        <!-- 折叠按钮 -->
-        <div class="collapse-btn" @click="collapseChage">
-            <i v-if="!collapse" class="el-icon-s-fold"></i>
-            <i v-else class="el-icon-s-unfold"></i>
-        </div>
-        <div class="logo">后台管理系统</div>
-        <div class="header-right">
-            <div class="header-user-con">
-                <!-- 消息中心 -->
-                <div class="btn-bell">
-                    <el-tooltip
-                        effect="dark"
-                        :content="message?`有${message}条未读消息`:`消息中心`"
-                        placement="bottom"
-                    >
-                        <router-link to="/tabs">
-                            <i class="el-icon-bell"></i>
-                        </router-link>
-                    </el-tooltip>
-                    <span class="btn-bell-badge" v-if="message"></span>
-                </div>
-                <!-- 用户头像 -->
-                <div class="user-avator">
-                    <img src="../assets/img/img.jpg" />
-                </div>
-                <!-- 用户名下拉菜单 -->
-                <el-dropdown class="user-name" trigger="click" @command="handleCommand">
-                    <span class="el-dropdown-link">
-                        {{username}}
-                        <i class="el-icon-caret-bottom"></i>
-                    </span>
-                    <template #dropdown>
-                        <el-dropdown-menu>
-                            <a href="https://github.com/lin-xin/vue-manage-system" target="_blank">
-                                <el-dropdown-item>项目仓库</el-dropdown-item>
-                            </a>
-                            <el-dropdown-item divided command="loginout">退出登录</el-dropdown-item>
-                        </el-dropdown-menu>
-                    </template>
-                </el-dropdown>
-            </div>
-        </div>
-    </div>
+	<div class="header">
+		<!-- 折叠按钮 -->
+		<div
+			class="collapse-btn"
+			@click="collapseChage"
+		>
+			<i
+				v-if="!collapse"
+				class="el-icon-s-fold"
+			/>
+			<i
+				v-else
+				class="el-icon-s-unfold"
+			/>
+		</div>
+		<div class="logo">
+			后台管理系统
+		</div>
+		<div class="header-right">
+			<div class="header-user-con">
+				<!-- 消息中心 -->
+				<div class="btn-bell">
+					<el-tooltip
+						effect="dark"
+						:content="message?`有${message}条未读消息`:`消息中心`"
+						placement="bottom"
+					>
+						<router-link to="/tabs">
+							<i class="el-icon-bell" />
+						</router-link>
+					</el-tooltip>
+					<span
+						v-if="message"
+						class="btn-bell-badge"
+					/>
+				</div>
+				<!-- 用户头像 -->
+				<div class="user-avator">
+					<img src="../assets/img/img.jpg">
+				</div>
+				<!-- 用户名下拉菜单 -->
+				<el-dropdown
+					class="user-name"
+					trigger="click"
+					@command="handleCommand"
+				>
+					<span class="el-dropdown-link">
+						{{ userInfo.nickName }}
+						<i class="el-icon-caret-bottom" />
+					</span>
+					<template #dropdown>
+						<el-dropdown-menu>
+							<a
+								href="https://github.com/lin-xin/vue-manage-system"
+								target="_blank"
+							>
+								<el-dropdown-item>项目仓库</el-dropdown-item>
+							</a>
+							<el-dropdown-item
+								divided
+								command="loginout"
+							>
+								退出登录
+							</el-dropdown-item>
+						</el-dropdown-menu>
+					</template>
+				</el-dropdown>
+			</div>
+		</div>
+	</div>
 </template>
 <script>
 export default {
-    data() {
-        return {
-            fullscreen: false,
-            name: "linxin",
-            message: 2
-        };
-    },
-    computed: {
-        username() {
-            let username = localStorage.getItem("ms_username");
-            return username ? username : this.name;
-        },
-        collapse() {
-            return this.$store.state.collapse;
-        }
-    },
-    methods: {
-        // 用户名下拉菜单选择事件
-        handleCommand(command) {
-            if (command == "loginout") {
-                localStorage.removeItem("ms_username");
-                this.$router.push("/login");
-            }
-        },
-        // 侧边栏折叠
-        collapseChage() {
-            this.$store.commit("hadndleCollapse", !this.collapse);
-        }
-    },
-    mounted() {
-        if (document.body.clientWidth < 1500) {
-            this.collapseChage();
-        }
-    }
+	data() {
+		return {
+			fullscreen: false,
+			message: 2
+		};
+	},
+	computed: {
+		userInfo() {
+			let userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
+			return userInfo
+		},
+		collapse() {
+			return this.$store.state.system.collapse;
+		}
+	},
+	mounted() {
+		if (document.body.clientWidth < 1500) {
+			this.collapseChage();
+		}
+	},
+	methods: {
+		// 用户名下拉菜单选择事件
+		async handleCommand(command) {
+			if (command === 'loginout') {
+				/* sessionStorage.clear();
+				this.$router.push('/login'); */
+				
+				// 改成vuex登出模式，并且同时清除用户信息
+				const res = await this.$store.dispatch('user/logout', {})
+				// if (res){ 
+				this.$router.push('/login');
+				// }
+			}
+		},
+		// 侧边栏折叠
+		collapseChage() {
+			this.$store.commit('system/hadndleCollapse', !this.collapse);
+		}
+	}
 };
 </script>
 <style scoped>

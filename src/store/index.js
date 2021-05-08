@@ -1,6 +1,18 @@
-import {createStore} from 'vuex'
+import { createStore } from 'vuex'
+// 拆分后的模块，逐个引入
+import user from './modules/user'
+import system from './modules/system'
 
+const modules = {
+	user,
+	system,
+}
 export default createStore({
+	modules: modules
+})	
+
+// 旧版vuex，需要拆分模块
+/* export default createStore({
     state: {
         tagsList: [],
         collapse: true
@@ -53,4 +65,5 @@ export default createStore({
     },
     actions: {},
     modules: {}
-})
+}) */
+
