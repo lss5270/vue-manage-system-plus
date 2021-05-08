@@ -1,4 +1,5 @@
 const Mock = require('mockjs')
+// 使用语法：1.Mock.mock( rurl, function( options ) ) , 2.Mock.mock( rurl, rtype, function( options ) )
 
 // 登录（登录后需获取动态路由）
 
@@ -45,7 +46,10 @@ let tableData = {
 				"thumb": "https://lin-xin.gitee.io/images/post/notice.png"
 			}
 		],
-		"pageTotal": 4
+		"pageTotal": 40
 	}
-Mock.mock( '/v1/getTableData', tableData )
+Mock.mock( '/v1/getTableData', 'post', (options) => {
+	console.log(options)
+	return tableData
+})
 

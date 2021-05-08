@@ -110,7 +110,7 @@
 </template>
 
 <script>
-import { tableData } from '@/api/index';
+import { getTableData } from '@/api/index';
 export default {
     name: 'basetable',
     data() {
@@ -137,11 +137,11 @@ export default {
     methods: {
         // 获取 easy-mock 的模拟数据
         async getData() {
-            const res = await tableData(this.query)
+            const res = await getTableData(this.query)
             console.log('接口返回数据为：', res);
             this.tableData = res.list;
             this.pageTotal = res.pageTotal || 50;
-            /* tableData(this.query).then(res => {
+            /* getTableData(this.query).then(res => {
                 console.log('接口返回数据为：', res);
                 this.tableData = res.list;
                 this.pageTotal = res.pageTotal || 50;
@@ -149,7 +149,8 @@ export default {
         },
         // 触发搜索按钮
         handleSearch() {
-            this.$set(this.query, 'pageIndex', 1);
+            // this.$set(this.query, 'pageIndex', 1); // 3.0已废弃
+            this.query.pageIndex = 1
             this.getData();
         },
         // 删除操作
@@ -188,11 +189,12 @@ export default {
         saveEdit() {
             this.editVisible = false;
             this.$message.success(`修改第 ${this.idx + 1} 行成功`);
-            this.$set(this.tableData, this.idx, this.form);
+            // this.$set(this.tableData, this.idx, this.form);
         },
         // 分页导航
         handlePageChange(val) {
-            this.$set(this.query, 'pageIndex', val);
+            // this.$set(this.query, 'pageIndex', val);
+            this.query.pageIndex = val
             this.getData();
         }
     }
