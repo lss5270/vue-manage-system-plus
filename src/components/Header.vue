@@ -52,7 +52,11 @@
 					<template #dropdown>
 						<el-dropdown-menu>
 							<a
+<<<<<<< HEAD
 								href="https://github.com/lss5270/vue-manage-system-plus"
+=======
+								href="https://github.com/lin-xin/vue-manage-system"
+>>>>>>> 86ab970c89920cadd9d559f83fa3c1f446119d8c
 								target="_blank"
 							>
 								<el-dropdown-item>项目仓库</el-dropdown-item>
