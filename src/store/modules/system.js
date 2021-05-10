@@ -7,7 +7,7 @@
 
 const state = {
 	tagsList: [],	// 标签页数组
-	collapse: true,	// 菜单折叠
+	collapse: true,	// 菜单展开
 }
 
 const mutations = {
@@ -54,6 +54,7 @@ const mutations = {
 	// 侧边栏折叠
 	hadndleCollapse(state, data) {
 	    state.collapse = data;
+		// sessionStorage['collapse'] = data;
 	}
 }
 
