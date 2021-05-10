@@ -55,16 +55,8 @@ const routes = [
 				component: () => import (
 					/* webpackChunkName: "tabs" */
 					'../views/Tabs.vue')
-			}, {
-				path: '/donate',
-				name: 'donate',
-				meta: {
-					title: '鼓励作者'
-				},
-				component: () => import (
-					/* webpackChunkName: "donate" */
-					'../views/Donate.vue')
-			}, {
+			},
+			{
 				path: '/permission',
 				name: 'permission',
 				meta: {
@@ -128,7 +120,8 @@ const routes = [
 		component: () => import (
 			/* webpackChunkName: "login" */
 			'../views/Login.vue')
-	}
+	},
+	{ path: '/:pathMatch(.*)*', redirect: '/404', hidden: true } // 添加404重定向，防止用户随意敲链接
 ];
 
 const router = createRouter({

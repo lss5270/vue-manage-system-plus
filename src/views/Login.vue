@@ -50,7 +50,7 @@
 </template>
 
 <script lang="ts">
-import { reactive, onMounted, ref, toRefs, getCurrentInstance } from 'vue'
+import { reactive, onMounted, ref, toRefs } from 'vue'
 import { useRouter, useRoute } from 'vue-router'	// 跟2.0中的this.$router和this.$route的相对应
 import {
 	useStore,
@@ -120,7 +120,7 @@ export default {
 		
 		// 暴露给tmp
 		return {
-			...toRefs(state), // ref 和原始 property 已经“链接”起来了，每个 property 都是指向原始对象相应 property 的 ref。
+			...toRefs(state), // ref和原始property已经“链接”起来了，每个property都是指向原始对象相应 property 的 ref。
 			submitForm,
 			elmRefs,
 		}
