@@ -91,7 +91,7 @@ export default {
 		async toLogin() {
 			let vm = this.$router
 			const res = await this.$store.dispatch('user/login', this.param)
-			if (res.error === 0){
+			if (res){
 				this.$router.push('/');
 			}
 			else {

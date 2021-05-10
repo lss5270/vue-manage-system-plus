@@ -16,13 +16,15 @@
 
 由于之前企业改用其他技术方案，所以已经好长一段时间没接触vue了，近段时间公司准备重新用回vue，然后个人发现vue已经更新到3.0了，想找个基于vue3.0的开源项目练手。在github上搜了一下，只有[vue-manage-system](https://github.com/lin-xin/vue-manage-system)比较符合拿来练手，工程简洁不像其他开源项目那么臃肿，但是还有以下几个方面不太符合企业级应用需求：
 
-- [ ] 1.没有发送数据获取的接口请求（计划先使用mock拦截）
+- [x] 1.没有发送数据获取的接口请求（计划先使用mock拦截）
 - [ ] 2.路由全部写死在代码中，没有获取接口返回的动态路由（计划先用mock代替接口，根据不同角色返回不同的动态路由数据）
 - [ ] 3.左侧菜单sidebar.vue文件没有渲染动态数据菜单（使用登录后的动态路由进行渲染）
 - [ ] 4.业务中的语法大多数都还是vue2.0语法（部分业务启用3.0语法，尝鲜）
-- [ ] 5.vuex未进行模块拆分（拆分管理即可）
-- [ ] 6.未加入eslint进行代码强制校验（加）
-- [ ] 7.未加入常用混入、全局方法封装（加）
+- [x] 5.vuex未进行模块拆分（需拆分管理）
+- [x] 6.未加入eslint进行代码强制校验（待加）
+- [ ] 7.未加入常用混入、全局方法封装（待加）
+- [x] 8.缺少api请求的公共入参封装、以及回参统一过滤处理等（企业级应用必带公共入参）
+- [ ] 9.增加组织机构模块（角色、用户、菜单分配等）
 
 出于以上考虑，本人决定基于该项目进行升级改造，并且免费开源出来，供广大开发者开箱即用。
 
@@ -38,9 +40,9 @@
 
 ## 赞赏
 
-请作者喝杯咖啡吧！(微信号：linxin_20)
+请作者喝杯咖啡吧！(微信号：)
 
-![微信扫一扫](https://lin-xin.gitee.io/images/weixin.jpg)
+
 
 ## 系统介绍
 
@@ -71,7 +73,7 @@
 
 ```
 git clone https://github.com/lss5270/vue-manage-system-plus.git      // 把模板下载到本地
-cd vue-manage-system    // 进入模板目录
+cd vue-manage-system-plus    // 进入模板目录
 npm install         // 安装项目依赖，等待安装完成之后，安装失败可用 cnpm 或 yarn
 
 // 开启服务器，浏览器访问 http://localhost:8080
@@ -139,4 +141,4 @@ vue.js 封装 sChart.js 的图表组件。访问地址：[vue-schart](https://gi
 
 ## License
 
-[MIT](https://github.com/lin-xin/vue-manage-system/blob/master/LICENSE)
+[MIT](https://github.com/lss5270/vue-manage-system-plus/blob/master/LICENSE)
