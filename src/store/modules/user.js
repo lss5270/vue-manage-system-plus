@@ -8,7 +8,7 @@
 import {
 	login,
 	logout,
-	getUserInfo
+	// getUserInfo
 } from '@/api/user'
 
 const state = {
@@ -98,7 +98,7 @@ const actions = {
 	async logout({ commit }){
 		commit('DO_LOGOUT', await logout())
 	},
-	async getUserInfo({ commit }){
+	/* async getUserInfo({ commit }){
 		// commit('SET_USERINFO', { userInfo: getUserInfo() })
 		return new Promise((rs, rj)=>{
 			// 返回全部用户信息
@@ -109,7 +109,7 @@ const actions = {
 				rj(err)
 			})
 		})
-	},
+	}, */
 	setUserInfo({ commit }, data){
 		commit('SET_USERINFO', { userInfo: data })
 	}
