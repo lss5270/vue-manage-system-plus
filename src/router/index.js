@@ -143,9 +143,16 @@ router.beforeEach((to, from, next) => {
 		next();
 	} */
 	const token = sessionStorage.getItem('token');
-	if (!token && to.path !== '/login') {
+	const permissionMenu = sessionStorage.getItem('permissionMenu') || '';
+	let path = to.path.replace('/', '');
+	console.log(permissionMenu, path)
+	if (!token && to.path !== '/login') { // 未登录重定向到登录
 		next('/login');
-	} else {
+	} 
+	else if (to.path !== '/login' && !!permissionMenu && permissionMenu.indexOf(path) === -1) { // 防止用户敲击路由进入未授权菜单，直接重定向到403页面
+		next('/403');
+	}
+	else {
 		next();
 	}
 });
