@@ -2,10 +2,10 @@
 	<div class="login-wrap">
 		<div class="ms-login">
 			<div class="ms-title">
-				后台管理系统
+				XX后台管理系统
 			</div>
 			<el-form
-				ref="login"
+				ref="elmRefs"
 				:model="param"
 				:rules="rules"
 				label-width="0px"
@@ -49,8 +49,85 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
+import { reactive, onMounted, ref, toRefs, getCurrentInstance } from 'vue'
+import { useRouter, useRoute } from 'vue-router'	// 跟2.0中的this.$router和this.$route的相对应
+import {
+	useStore,
+	// mapState,
+	// mapMutations,
+	// mapActions,
+	// mapGetters
+} from 'vuex'
+
 export default {
+	// components: {},
+	// 在初始 prop 解析之后立即调用，在 beforeCreate 钩子之前调用
+	setup(props, context) {
+		const router = useRouter()	// vuex4.0已去掉this.$router
+		// const route = useRoute()
+		const store = useStore()	// vuex4.0已去掉this.$store
+		const elmRefs = ref(null); 	// 获取真实dom ，vuex4.0已去掉this.$refs。所以使用过程有点非常曲折。。。
+		
+		// 方式一： 可传入任意类型的值，改变值的时候必须使用其value属性,例 refData.value = 2
+		// const refData = ref(0)
+		// 方式二： 只能传入引用类型的值
+		const state = reactive({ // 创建响应式
+			param: {
+				username: 'admin',
+				password: '123123'
+			},
+			rules: {
+				username: [
+					{ required: true, message: '请输入用户名', trigger: 'blur' }
+				],
+				password: [
+					{ required: true, message: '请输入密码', trigger: 'blur' }
+				]
+			}
+		})
+		
+		onMounted(() => {
+			// this.$store.commit('system/clearTags');
+			store.commit('system/clearTags');
+			// console.log(elmRefs.value); // 得到一个 RefImpl 的对象, 通过 .value 访问到数据 
+		})
+		
+		// 表单校验
+		const submitForm = async () => {
+			// this.$refs.refLogin.validate(valid => {
+			elmRefs.value.validate(valid => {
+				if (valid) {
+					// 改成vuex登录模式，并且同时存储用户信息
+					toLogin()
+				} else {
+					this.$message.error('请输入账号和密码');
+					return false;
+				}
+			});
+		}
+		
+		// 登录
+		const toLogin = async () => {
+			const res = await store.dispatch('user/login', state.param)
+			if (res){
+				router.push('/');
+			}
+			else {
+				this.$message.error(res.msg);
+			}
+		}
+		
+		// 暴露给tmp
+		return {
+			...toRefs(state), // ref 和原始 property 已经“链接”起来了，每个 property 都是指向原始对象相应 property 的 ref。
+			submitForm,
+			elmRefs,
+		}
+	}
+	
+	/* 
+	// 旧版2.0语法注释
 	data() {
 		return {
 			param: {
@@ -75,9 +152,9 @@ export default {
 		submitForm() {
 			this.$refs.login.validate(valid => {
 				if (valid) {
-					/* this.$message.success('登录成功');
-					localStorage.setItem('ms_username', this.param.username);
-					this.$router.push('/'); */
+					// this.$message.success('登录成功');
+					// localStorage.setItem('ms_username', this.param.username);
+					// this.$router.push('/');
 					
 					// 改成vuex登录模式，并且同时存储用户信息
 					this.toLogin()
@@ -89,7 +166,6 @@ export default {
 		},
 		// 登录
 		async toLogin() {
-			let vm = this.$router
 			const res = await this.$store.dispatch('user/login', this.param)
 			if (res){
 				this.$router.push('/');
@@ -99,7 +175,7 @@ export default {
 			}
 		},
 		
-	}
+	} */
 };
 </script>
 
@@ -108,7 +184,7 @@ export default {
     position: relative;
     width: 100%;
     height: 100%;
-    background-image: url(../assets/img/login-bg.jpg);
+    background-image: url(~@/assets/img/login-bg.jpg);
     background-size: 100%;
 }
 .ms-title {
