@@ -15,7 +15,7 @@ import {
 const state = {
 	token: '',
 	openid: null,
-	userInfo: {},		// 用户信息（userInfo、token 其他api请求依赖这两项，所以需要常量化存本地，防止用户刷新浏览器导致数据丢失）
+	userInfo: {},		// 用户信息（userInfo、token 其他api请求依赖这两项，所以需要持久化存本地，防止用户刷新浏览器导致数据丢失）
 	wxInfo: {}, 		// 微信授权后的临时信息
 	permissionMenu: [], // 当前用户权限菜单
 }

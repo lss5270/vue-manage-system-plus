@@ -130,23 +130,26 @@ const router = createRouter({
 	routes
 });
 
+// 全局钩子
 router.beforeEach((to, from, next) => {
-	document.title = `${to.meta.title} | vue-manage-system`;
+	document.title = `${to.meta.title} | XX后台管理系统`;
 	
 	const token = sessionStorage.getItem('token');
-	// const permissionMenu = sessionStorage.getItem('permissionMenu') || '';
-	const permissionMenu = store.state.user.permissionMenu;
+	const permissionMenu = sessionStorage.getItem('permissionMenu') || '';
+	// const permissionMenu = store.state.user.permissionMenu;
 	let topath = to.path.replace('/', '');
-	console.log(permissionMenu, topath)
+	// console.log(permissionMenu, topath)
 	if (!token && to.path !== '/login') { // 未登录重定向到登录
 		next('/login');
 	} 
-	/* else if (to.path !== '/login' && to.path !== '/dashboard' && permissionMenu.length > 0 && permissionMenu.indexOf(topath) === -1) { // 防止用户敲击路由进入未授权菜单，直接重定向到403页面
+	else if (to.path !== '/login' && to.path !== '/dashboard' && permissionMenu.length > 0 && permissionMenu.indexOf(topath) === -1) { // 防止用户敲击路由进入未授权菜单，直接重定向到403页面
 		next('/403');
-	} */
+	}
 	else {
 		next();
 	}
+	
+	// 钩子内也可改成动态注册路由（router.addRoutes），可参考：https://www.cnblogs.com/amylis_chen/p/13112300.html
 });
 
 export default router;
