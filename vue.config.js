@@ -1,8 +1,8 @@
 
 module.exports = {
-	/* publicPath: '/',
+	publicPath: './',
 	outputDir: 'dist',
-	assetsDir: 'static', */
+	assetsDir: 'static',
 	lintOnSave: process.env.NODE_ENV !== 'production',
 	productionSourceMap: false,
 	devServer: {

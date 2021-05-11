@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router';
 import Home from '@/views/Home.vue';
 import store from '@/store'
 
@@ -126,7 +126,10 @@ const routes = [
 ];
 
 const router = createRouter({
-	history: createWebHistory(process.env.BASE_URL),
+	// history: createWebHistory(process.env.BASE_URL),
+	// history: createWebHistory('/vue-manage-system-plus-demo/'),	// 托管文件夹名称，https://lss5270.github.io/vue-manage-system-plus-demo/
+	// history: createWebHashHistory('/vue-manage-system-plus-demo/'),	// 给出的网址为 `https://example.com/vue-manage-system-plus-demo#`
+	history: createWebHashHistory(),
 	routes
 });
 
