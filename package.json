@@ -1,6 +1,6 @@
 {
-    "name": "vue-manage-system",
-    "version": "5.0.0",
+    "name": "vue-manage-system-plus",
+    "version": "1.0.1",
     "private": true,
     "scripts": {
         "serve": "vue-cli-service serve",
