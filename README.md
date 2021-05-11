@@ -18,7 +18,7 @@
 
 - [x] vuex未进行模块拆分（需拆分管理，已拆分）
 - [x] 登录、登出未使用vuex状态管理模式（已加）
-- [x] 缺少eslint代码强制校验（已加）
+- [x] 缺少eslint自定义规则校验（已加）
 - [x] 没有发送数据获取的接口请求（已改造成发送api请求，但采用mock模拟接口返回数据，实际开发时去掉main.js中的mock模块即可）
 - [x] 缺少api请求的公共入参封装、以及回参统一过滤处理等（企业级应用必带公共入参，已加）
 - [x] 路由全部写死在代码中，没有注册动态路由（通过接口获取，然后注册动态路由。也可全部注册，然后通过导航守卫beforeEach判断to页面是否在已分配的菜单权限中）
@@ -40,9 +40,15 @@
 
 ![Image text](https://github.com/lss5270/vue-manage-system-plus/blob/main/screenshots/loginDemo.gif)
 
+账号错误提示
+
 ![Image text](https://github.com/lss5270/vue-manage-system-plus/blob/main/screenshots/admin11.png)
 
+admin账号返回8个菜单
+
 ![Image text](https://github.com/lss5270/vue-manage-system-plus/blob/main/screenshots/admin.png)
+
+user账号返回4个菜单
 
 ![Image text](https://github.com/lss5270/vue-manage-system-plus/blob/main/screenshots/user.png)
 
@@ -105,7 +111,7 @@ npm run build
 
 ### vue-schart
 
-vue.js 封装 sChart.js 的图表组件。访问地址：[vue-schart](https://github.com/linxin/vue-schart)
+vue.js 封装 sChart.js 的图表组件。访问地址：[vue-schart]()
 
 <p><a href="https://www.npmjs.com/package/vue-schart"><img src="https://img.shields.io/npm/dm/vue-schart.svg" alt="Downloads"></a></p>
 
