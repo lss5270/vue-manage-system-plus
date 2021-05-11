@@ -89,9 +89,18 @@ export default {
 		}
 	},
 	mounted() {
-		if (document.body.clientWidth < 1500) {
-			this.collapseChage();
+		// 小窗口默认折叠菜单
+		if (document.body.clientWidth < 1367) {
+			// this.collapseChage();
+			this.$store.commit('system/hadndleCollapse', true);
 		}
+		window.onresize = () => {
+			if (document.body.clientWidth < 1367) {
+				this.$store.commit('system/hadndleCollapse', true);
+			} else {
+				this.$store.commit('system/hadndleCollapse', false);
+			}
+		};
 	},
 	methods: {
 		// 用户名下拉菜单选择事件

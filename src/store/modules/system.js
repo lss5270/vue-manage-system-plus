@@ -6,8 +6,8 @@
  */
 
 const state = {
-	tagsList: [],	// 标签页数组
-	collapse: true,	// 菜单展开
+	tagsList: [],		// 标签页数组
+	collapse: false,	// 是否折叠收起菜单
 }
 
 const mutations = {

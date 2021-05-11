@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '@/views/Home.vue';
+import store from '@/store'
 
 const routes = [
 	{
@@ -131,27 +132,18 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
 	document.title = `${to.meta.title} | vue-manage-system`;
-	/* const role = localStorage.getItem('ms_username');
-	if (!role && to.path !== '/login') {
-		next('/login');
-	} else if (to.meta.permission) {
-		// 如果是管理员权限则可进入，这里只是简单的模拟管理员权限而已
-		role === 'admin'
-			? next()
-			: next('/403');
-	} else {
-		next();
-	} */
+	
 	const token = sessionStorage.getItem('token');
-	const permissionMenu = sessionStorage.getItem('permissionMenu') || '';
-	let path = to.path.replace('/', '');
-	console.log(permissionMenu, path)
+	// const permissionMenu = sessionStorage.getItem('permissionMenu') || '';
+	const permissionMenu = store.state.user.permissionMenu;
+	let topath = to.path.replace('/', '');
+	console.log(permissionMenu, topath)
 	if (!token && to.path !== '/login') { // 未登录重定向到登录
 		next('/login');
 	} 
-	else if (to.path !== '/login' && !!permissionMenu && permissionMenu.indexOf(path) === -1) { // 防止用户敲击路由进入未授权菜单，直接重定向到403页面
+	/* else if (to.path !== '/login' && to.path !== '/dashboard' && permissionMenu.length > 0 && permissionMenu.indexOf(topath) === -1) { // 防止用户敲击路由进入未授权菜单，直接重定向到403页面
 		next('/403');
-	}
+	} */
 	else {
 		next();
 	}
