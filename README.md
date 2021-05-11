@@ -40,11 +40,11 @@
 
 ![Image text](https://github.com/lss5270/vue-manage-system-plus/blob/main/screenshots/loginDemo.gif)
 
-![Image text](https://github.com/lss5270/vue-manage-system-plus/blob/main/screenshots/admin11.gif)
+![Image text](https://github.com/lss5270/vue-manage-system-plus/blob/main/screenshots/admin11.png)
 
-![Image text](https://github.com/lss5270/vue-manage-system-plus/blob/main/screenshots/admin.gif)
+![Image text](https://github.com/lss5270/vue-manage-system-plus/blob/main/screenshots/admin.png)
 
-![Image text](https://github.com/lss5270/vue-manage-system-plus/blob/main/screenshots/user.gif)
+![Image text](https://github.com/lss5270/vue-manage-system-plus/blob/main/screenshots/user.png)
 
 ### 403和404重定向（小屏不清晰可以下载图片预览）
 
