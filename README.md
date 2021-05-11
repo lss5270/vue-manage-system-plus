@@ -33,11 +33,11 @@
 
 ### 登录
 
-![Image text](https://github.com/lss5270/vue-manage-system-plus/raw/master/screenshots/loginDemo.gif)
+![Image text](https://github.com/lss5270/vue-manage-system-plus/blob/main/screenshots/loginDemo.gif)
 
 ### 403和404重定向
 
-![Image text](https://github.com/lss5270/vue-manage-system-plus/raw/master/screenshots/403and404.gif)
+![Image text](https://github.com/lss5270/vue-manage-system-plus/blob/main/screenshots/403and404.gif)
 
 ## 赞赏
 
