@@ -10,21 +10,21 @@
     <img src="https://img.shields.io/github/license/mashape/apistatus.svg" alt="license">
   </a>
 
-基于Vue3 + Element Plus 的后台管理系统解决方案。基于vue-manage-system开源系统升级改造，企业级定制，开箱即用。[线上地址](https://lin-xin.gitee.io/example/work/)
+采用Vue3 + Element Plus 搭建的后台管理系统解决方案，基于vue-manage-system开源系统升级改造而成，企业级定制，开箱即用。[线上地址](https://lin-xin.gitee.io/example/work/)
 
 # 前言
 
-由于之前企业改用其他技术方案，所以已经好长一段时间没接触vue了，近段时间公司准备重新用回vue，然后个人发现vue已经更新到3.0了，想找个基于vue3.0的开源项目练手。在github上搜了一下，只有[vue-manage-system](https://github.com/lin-xin/vue-manage-system)比较符合拿来练手，工程简洁不像其他开源项目那么臃肿，但是还有以下几个方面不太符合企业级应用需求（打上勾的代表个人已经改造完成）：
+由于之前企业改用其他技术方案，所以已经好长一段时间没接触vue了，近段时间公司准备重新用回vue，然后个人发现vue已经更新到3.0了，想找个基于vue3.0的开源项目练手。在github上搜了一下，只有[vue-manage-system]比较符合拿来练手，工程简洁不像其他开源项目那么臃肿，但是还有以下几个方面不太符合企业级应用需求（打上勾的代表个人已经改造完成）：
 
-- [x] 1.没有发送数据获取的接口请求（已改造发送api请求，但是已用mock拦截）
-- [x] 2.路由全部写死在代码中，没有获取接口返回的动态路由（通过接口获取，然后注册动态路由。也可全部注册，然后通过导航守卫beforeEach判断to页面是否在已分配的菜单权限中）
-- [x] 3.左侧菜单sidebar.vue文件没有渲染动态数据菜单（已发送api请求菜单接口，根据不同角色返回不同的动态路由数据。使用登录后的动态路由进行渲染）
+- [x] 1.没有发送数据获取的接口请求（已改造发送api请求，但采用mock模拟接口返回数据）
+- [x] 2.路由全部写死在代码中，没有注册动态路由（通过接口获取，然后注册动态路由。也可全部注册，然后通过导航守卫beforeEach判断to页面是否在已分配的菜单权限中）
+- [x] 3.左侧菜单sidebar.vue文件没有渲染动态数据菜单（已改造发送api请求菜单接口，根据不同角色返回不同的动态菜单。使用登录后的动态菜单进行渲染）
 - [x] 4.业务中的语法大多数都还是vue2.0语法（登录等业务启用3.0语法，尝鲜并踩坑）
-- [x] 5.vuex未进行模块拆分（需拆分管理）
-- [x] 6.未加入eslint进行代码强制校验
+- [x] 5.vuex未进行模块拆分（需拆分管理，已拆分）
+- [x] 6.未加入eslint进行代码强制校验（已加）
 - [ ] 7.未加入常用混入、全局方法封装（待加）
-- [x] 8.缺少api请求的公共入参封装、以及回参统一过滤处理等（企业级应用必带公共入参）
-- [x] 9.缺少全局的403、404路由重定向，防止用户随意、恶意敲链接
+- [x] 8.缺少api请求的公共入参封装、以及回参统一过滤处理等（企业级应用必带公共入参，已加）
+- [x] 9.缺少全局的403、404路由重定向，防止用户随意、恶意敲链接（已加）
 - [ ] 10.增加组织机构模块（角色、用户、菜单分配等）
 
 出于以上考虑，本人决定基于该项目进行升级改造，并且免费开源出来，供广大开发者开箱即用。
@@ -33,11 +33,11 @@
 
 ### 登录
 
-![Image text](https://github.com/lin-xin/manage-system/raw/master/screenshots/wms3.png)
+![Image text](https://github.com/lss5270/vue-manage-system-plus/raw/master/screenshots/loginDemo.gif)
 
-### 首页
+### 403和404重定向
 
-![Image text](https://github.com/lin-xin/manage-system/raw/master/screenshots/wms1.png)
+![Image text](https://github.com/lss5270/vue-manage-system-plus/raw/master/screenshots/403and404.gif)
 
 ## 赞赏
 
