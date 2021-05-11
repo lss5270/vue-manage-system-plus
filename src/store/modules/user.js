@@ -8,14 +8,16 @@
 import {
 	login,
 	logout,
+	getPermissionMenu,
 	// getUserInfo
 } from '@/api/user'
 
 const state = {
 	token: '',
 	openid: null,
-	userInfo: {},
-	wxInfo: {}, 	// 微信授权后的临时信息
+	userInfo: {},		// 用户信息（userInfo、token 其他api请求依赖这两项，所以需要常量化存本地，防止用户刷新浏览器导致数据丢失）
+	wxInfo: {}, 		// 微信授权后的临时信息
+	permissionMenu: [], // 当前用户权限菜单
 }
 
 // 更改 Vuex 的 store 中的状态的唯一方法是提交 mutation。统一入口，常量命名，必须是同步函数
@@ -48,6 +50,10 @@ const mutations = {
 	// 设置微信信息
 	SET_WXINFO(state, payload) {
 		state.wxInfo = payload.wxInfo
+	},
+	// 设置用户菜单
+	SET_PERMISSIONMENU(state, payload) {
+		state.permissionMenu = payload.permissionMenu
 	},
 }
 
@@ -112,7 +118,22 @@ const actions = {
 	}, */
 	setUserInfo({ commit }, data){
 		commit('SET_USERINFO', { userInfo: data })
-	}
+	},
+	// 获取用户权限菜单
+	getPermissionMenu({ commit }, data){
+		return new Promise((rs, rj)=>{
+			// 返回部分用户信息
+			getPermissionMenu(data).then(res=>{
+				if (!res){
+					return
+				}
+				commit('SET_PERMISSIONMENU', { permissionMenu: res })
+				rs(res)
+			}).catch(err=>{
+				rj(err)
+			})
+		})
+	},
 }
 
 export default {

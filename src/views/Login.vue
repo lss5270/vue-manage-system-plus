@@ -42,7 +42,7 @@
 					</el-button>
 				</div>
 				<p class="login-tips">
-					Tips : 用户名和密码使用了mock模拟（admin 123123或者user 123123）。
+					Tips : 用户名和密码（admin 123123或者user 123123），admin具备全部菜单，user用户模拟接口暂时返回4个菜单，可根据自己的需求自由分配菜单。
 				</p>
 			</el-form>
 		</div>
@@ -111,12 +111,19 @@ export default {
 		const toLogin = async () => {
 			const res = await store.dispatch('user/login', state.param)
 			if (res){
+				// await getPermissionMenu()
 				router.push('/');
 			}
-			else {
-				this.$message.error(res.msg);
-			}
 		}
+		
+		// 获取当前用户权限菜单等
+		/* const getPermissionMenu = async () => {
+			let par = { username: JSON.parse(sessionStorage['userInfo']).nickName }
+			const res = await store.dispatch('user/getPermissionMenu', par)
+			if (res){
+				console.log('接口返回的菜单数组为：', res)
+			}
+		} */
 		
 		// 暴露给tmp
 		return {

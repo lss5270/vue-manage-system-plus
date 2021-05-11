@@ -69,9 +69,6 @@
 </template>
 
 <script>
-import {
-	getPermissionMenu,
-} from '@/api/user'
 
 export default {
 	data() {
@@ -83,21 +80,26 @@ export default {
 		onRoutes() {
 			return this.$route.path.replace('/', '');
 		},
-		collapse(){
+		collapse() {
 			return this.$store.state.system.collapse
-		}
+		},
+		// menuItems() {
+		// 	return this.$store.state.user.permissionMenu
+		// },
 	},
 	mounted() {
 		this.getPermissionMenu()
 	},
 	methods: {
-		// 获取当前用户信息（包含权限菜单等）
+		// 获取当前用户权限菜单等（暂时放在该组件获取，不然刷新页面菜单会消失）
 		async getPermissionMenu() {
 			let par = { username: JSON.parse(sessionStorage['userInfo']).nickName }
-			const res = await getPermissionMenu(par)
-			console.log('接口返回的菜单数组为：', res)
-			this.menuItems = res
-			sessionStorage['permissionMenu'] = JSON.stringify(res)
+			const res = await this.$store.dispatch('user/getPermissionMenu', par)
+			if (res){ 
+				console.log('接口返回的菜单数组为：', res)
+				this.menuItems = res
+				// sessionStorage['permissionMenu'] = JSON.stringify(res)
+			}
 		}
 	}
 };
