@@ -10,7 +10,7 @@
     <img src="https://img.shields.io/github/license/mashape/apistatus.svg" alt="license">
   </a>
 
-采用Vue3 + Element Plus 搭建的后台管理系统解决方案，基于vue-manage-system开源系统升级改造而成，企业级定制，注释清晰，快速上手，开箱即用。[线上地址](https://lin-xin.gitee.io/example/work/)
+采用Vue3 + Element Plus 搭建的后台管理系统解决方案，基于vue-manage-system开源系统升级改造而成，企业级定制，注释清晰，快速上手，开箱即用。[线上地址](https://lss5270.github.io/vue-manage-system-plus-demo/)
 
 # 前言
 
