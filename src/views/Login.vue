@@ -42,7 +42,7 @@
 					</el-button>
 				</div>
 				<p class="login-tips">
-					Tips : 用户名和密码（admin 123123或者user 123123），admin具备全部菜单，user用户模拟接口暂时返回4个菜单，可根据自己的需求自由分配菜单。
+					Tips : 用户名和密码（admin 123123或者user 123123），admin具有全部菜单权限，user暂时返回4个菜单，可根据自己的需求自由分配菜单。
 				</p>
 			</el-form>
 		</div>
