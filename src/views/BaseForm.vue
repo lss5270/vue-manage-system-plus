@@ -190,6 +190,16 @@ export default {
 	methods: {
 		onSubmit() {
 			this.$message.success('提交成功！');
+			
+			this.$confirm('表单已提交，是否关闭当前标签？', '提示', {
+				type: 'warning'
+			}).then(() => {
+				// 关闭当前页面的标签页（）
+				this.$store.commit('system/closeCurrentTag', {
+				    $router: this.$router,
+				    $route: this.$route
+				});
+			}).catch(() => {});
 		}
 	}
 };

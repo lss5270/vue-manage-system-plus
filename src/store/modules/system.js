@@ -11,22 +11,23 @@ const state = {
 }
 
 const mutations = {
+	// 删除标签页
 	delTagsItem(state, data) {
-		state
-	        .tagsList
-	        .splice(data.index, 1);
+		state.tagsList.splice(data.index, 1);
 	},
+	// 新增标签页
 	setTagsItem(state, data) {
-	    state
-	        .tagsList
-	        .push(data)
+	    state.tagsList.push(data)
 	},
+	// 关闭所有
 	clearTags(state) {
 	    state.tagsList = []
 	},
+	// 关闭其他
 	closeTagsOther(state, data) {
 	    state.tagsList = data;
 	},
+	// 关闭当前标签页
 	closeCurrentTag(state, data) {
 	    for (let i = 0, len = state.tagsList.length; i < len; i++) {
 	        const item = state.tagsList[i];

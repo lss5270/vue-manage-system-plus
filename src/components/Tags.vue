@@ -65,8 +65,15 @@ export default {
 	},
 	created() {
 		this.setTags(this.$route);
+		
+		/* 
+			1.父子组件传递，父向子传递采用 props，子向父采用事件 emit。父组件通过 $refs 调用子组件的 method。
+			2.$parent和$children（this.$parent.xxx，this.$children.xxx）
+			3.eventBus事件总线。全局 event bus, 创建一个新的 vue 的实例，采用事件的方式通信。（vue3不再支持）
+			4.采用 vuex 全局状态管理。
+		*/
 		// 关闭当前页面的标签页
-		// this.$store.commit("closeCurrentTag", {
+		// this.$store.commit('system/closeCurrentTag', {
 		//     $router: this.$router,
 		//     $route: this.$route
 		// });
@@ -107,6 +114,7 @@ export default {
 				return item.path === route.fullPath;
 			});
 			if (!isExist) {
+				// 后续优化改成滚动条模式
 				if (this.tagsList.length >= 8) {
 					this.$store.commit('system/delTagsItem', { index: 0 });
 				}

@@ -9,7 +9,7 @@
 				>
 					<div class="user-info">
 						<img
-							src="../assets/img/img.jpg"
+							src="@/assets/img/img.jpg"
 							class="user-avator"
 							alt
 						>

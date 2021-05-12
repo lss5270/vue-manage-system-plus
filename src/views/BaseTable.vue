@@ -229,12 +229,10 @@ export default {
 			// 二次确认删除
 			this.$confirm('确定要删除吗？', '提示', {
 				type: 'warning'
-			})
-				.then(() => {
-					this.$message.success('删除成功');
-					this.tableData.splice(index, 1);
-				})
-				.catch(() => {});
+			}).then(() => {
+				this.$message.success('删除成功');
+				this.tableData.splice(index, 1);
+			}).catch(() => {});
 		},
 		// 多选操作
 		handleSelectionChange(val) {
