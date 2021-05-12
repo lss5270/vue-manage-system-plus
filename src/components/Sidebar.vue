@@ -13,8 +13,8 @@
 			<template v-for="item in menuItems">
 				<template v-if="item.children">
 					<el-submenu
-						:key="item.index"
-						:index="item.index"
+						:key="item.path"
+						:index="item.path"
 					>
 						<template #title>
 							<i :class="item.icon" />
@@ -24,8 +24,8 @@
 							<!-- 二级菜单，含子菜单 -->
 							<el-submenu
 								v-if="subItem.children"
-								:key="subItem.index"
-								:index="subItem.index"
+								:key="subItem.path"
+								:index="subItem.path"
 							>
 								<template #title>
 									{{ subItem.title }}
@@ -34,7 +34,7 @@
 								<el-menu-item
 									v-for="(threeItem, i) in subItem.children"
 									:key="i"
-									:index="threeItem.index"
+									:index="threeItem.path"
 								>
 									{{ threeItem.title }}
 								</el-menu-item>
@@ -42,8 +42,8 @@
 							<!-- 二级菜单，不含子菜单 -->
 							<el-menu-item
 								v-else
-								:key="subItem.index"
-								:index="subItem.index"
+								:key="subItem.path"
+								:index="subItem.path"
 							>
 								{{ subItem.title }}
 							</el-menu-item>
@@ -53,8 +53,8 @@
 				<!-- 一级菜单 -->
 				<template v-else>
 					<el-menu-item
-						:key="item.index"
-						:index="item.index"
+						:key="item.path"
+						:index="item.path"
 					>
 						<i :class="item.icon" />
 						<template #title>
@@ -78,7 +78,7 @@ export default {
 	},
 	computed: {
 		onRoutes() {
-			return this.$route.path.replace('/', '');
+			return this.$route.path;
 		},
 		collapse() {
 			return this.$store.state.system.collapse

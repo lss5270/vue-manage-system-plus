@@ -48,74 +48,74 @@ Mock.mock('/v1/getPermissionMenu', 'post', (options) => {
 		body: [
 			{
 				icon: 'el-icon-lx-home',
-				index: 'dashboard',
+				path: '/dashboard',
 				title: '系统首页'
 			},
 			{
 				icon: 'el-icon-lx-cascades',
-				index: 'table',
+				path: '/table',
 				title: '基础表格'
 			},
 			{
 				icon: 'el-icon-lx-copy',
-				index: 'tabs',
+				path: '/tabs',
 				title: 'tab选项卡'
 			},
 			{
 				icon: 'el-icon-lx-calendar',
-				index: '3',
+				path: '/form',
 				title: '表单相关',
 				children: [
 					{
-						index: 'form',
+						path: '/form/baseform',
 						title: '基本表单'
 					},
 					{
-						index: '3-2',
+						path: '/form-2',
 						title: '三级菜单',
 						children: [
 							{
-								index: 'editor',
+								path: '/form/form-2/editor',
 								title: '富文本编辑器'
 							},
 							{
-								index: 'markdown',
+								path: '/form/form-2/markdown',
 								title: 'markdown编辑器'
 							}
 						]
 					},
 					{
-						index: 'upload',
+						path: '/form/upload',
 						title: '文件上传'
 					}
 				]
 			},
 			{
 				icon: 'el-icon-lx-emoji',
-				index: 'icon',
+				path: '/icon',
 				title: '自定义图标'
 			},
 			{
 				icon: 'el-icon-pie-chart',
-				index: 'charts',
+				path: '/charts',
 				title: 'schart图表'
 			},
 			{
 				icon: 'el-icon-lx-global',
-				index: 'i18n',
+				path: '/i18n',
 				title: '国际化功能'
 			},
 			{
 				icon: 'el-icon-lx-warn',
-				index: '7',
+				path: '/error',
 				title: '错误处理',
 				children: [
 					{
-						index: '403',
+						path: '/error/403',
 						title: '403页面'
 					},
 					{
-						index: '404',
+						path: '/error/404',
 						title: '404页面'
 					}
 				]
@@ -130,30 +130,30 @@ Mock.mock('/v1/getPermissionMenu', 'post', (options) => {
 		body: [
 			{
 				icon: 'el-icon-lx-home',
-				index: 'dashboard',
+				path: '/dashboard',
 				title: '系统首页'
 			},
 			{
 				icon: 'el-icon-lx-cascades',
-				index: 'table',
+				path: '/table',
 				title: '基础表格'
 			},
 			{
 				icon: 'el-icon-lx-global',
-				index: 'i18n',
+				path: '/i18n',
 				title: '国际化功能'
 			},
 			{
 				icon: 'el-icon-lx-warn',
-				index: '7',
+				path: '/error',
 				title: '错误处理',
 				children: [
 					{
-						index: '403',
+						path: '/error/403',
 						title: '403页面'
 					},
 					{
-						index: '404',
+						path: '/error/404',
 						title: '404页面'
 					}
 				]

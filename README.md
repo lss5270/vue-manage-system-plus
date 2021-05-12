@@ -30,7 +30,7 @@
 - [x] 缺少侧边栏自适应浏览器窗口大小（已加）
 - [x] 缺少动态角色演示（已加，admin账号返回8个菜单，user账号返回4个菜单）
 
-以上打勾的代表个人已经改造完成，使其更贴切企业应用，免费开源，可以为广大开发爱好者减少框架底层搭建成本、节省时间，开箱即用。
+以上打勾的代表个人已经改造完成，使其更贴切企业应用，免费开源，可以为广大开发爱好者减少框架底层搭建成本、节省时间，即使是后端开发人员也能轻易上手，开箱即用。
 
 ## 项目截图
 
@@ -165,4 +165,4 @@ vue.js 封装 sChart.js 的图表组件。访问地址：[vue-schart]()
 
 ## License
 
-[MIT](https://github.com/lss5270/vue-manage-system-plus/blob/master/LICENSE)
+[MIT](https://github.com/lss5270/vue-manage-system-plus/blob/main/LICENSE)
