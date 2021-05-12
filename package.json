@@ -1,7 +1,22 @@
 {
     "name": "vue-manage-system-plus",
-    "version": "1.0.1",
-    "private": true,
+	"version": "1.0.1",
+	"description": "a vue management system based on ：vue3 + vue-router + vuex + element Plus + ES6 + webpack + npm",
+	"keywords": [
+	    "vue",
+	    "vue-admin",
+	    "vue-admin-spa",
+	    "vue-manage-system",
+	    "vue-manage-system-plus",
+	    "vue-router",
+	    "vuex",
+	    "element-ui",
+	    "webpack",
+	    "npm"
+	],
+	"homepage": "https://lss5270.github.io/vue-manage-system-plus-demo/",
+	"author": "lss <81438234@qq.com> (https://github.com/lss5270)",
+    "license": "MIT",
     "scripts": {
         "serve": "vue-cli-service serve",
         "build": "vue-cli-service build",

@@ -3,7 +3,7 @@
 		<div class="crumbs">
 			<el-breadcrumb separator="/">
 				<el-breadcrumb-item>
-					<i class="el-icon-lx-cascades" /> 基础表格00
+					<i class="el-icon-lx-cascades" /> 基础表格
 				</el-breadcrumb-item>
 			</el-breadcrumb>
 		</div>
@@ -206,7 +206,7 @@ export default {
 		this.getData();
 	},
 	methods: {
-		// 获取 easy-mock 的模拟数据
+		// 获取表格数据
 		async getData() {
 			const res = await getTableData(this.query)
 			console.log('接口返回数据为：', res);
@@ -220,8 +220,8 @@ export default {
 		},
 		// 触发搜索按钮
 		handleSearch() {
-			// this.$set(this.query, 'pageIndex', 1); // 3.0已废弃
-			this.query.pageIndex = 1
+			// this.$set(this.query, 'pageIndex', 1); // this.$set在3.0已废弃。用 proxy 实现双向绑定不会出现不更新的问题
+			this.query.pageIndex = 1;
 			this.getData();
 		},
 		// 删除操作
@@ -259,11 +259,13 @@ export default {
 			this.editVisible = false;
 			this.$message.success(`修改第 ${this.idx + 1} 行成功`);
 			// this.$set(this.tableData, this.idx, this.form);
+			this.tableData[this.idx] = this.form;
+			// this.$forceUpdate();
 		},
 		// 分页导航
 		handlePageChange(val) {
 			// this.$set(this.query, 'pageIndex', val);
-			this.query.pageIndex = val
+			this.query.pageIndex = val;
 			this.getData();
 		}
 	}
