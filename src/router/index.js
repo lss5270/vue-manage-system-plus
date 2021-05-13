@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router';
 import Home from '@/views/Home.vue';
 import store from '@/store'
+import { whiteList } from '@/common/config'
 
 const routes = [
 	{
@@ -114,7 +115,6 @@ const router = createRouter({
 	routes
 });
 
-const whiteList = ['/login', '/error/403', '/error/404'];	// 无需授权的白名单
 // 全局钩子
 router.beforeEach((to, from, next) => {
 	document.title = `${to.meta.title} | XX后台管理系统`;

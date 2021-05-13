@@ -1,4 +1,4 @@
-import http from '@/utils/request';
+import http from '@/common/request';
 
 export const login = data => http.post('/v1/login', data)	// 登录
 

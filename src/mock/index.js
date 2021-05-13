@@ -2,7 +2,7 @@ const Mock = require('mockjs')
 // 使用语法：1.Mock.mock( rurl, function( options ) ) , 2.Mock.mock( rurl, rtype, function( options ) )
 
 // 登录（登录后需获取动态路由）
-Mock.mock('/v1/login', 'post', (options) => {
+Mock.mock(RegExp('/v1/login' + ".*"), 'post', (options) => {
 	console.log(options)
 	let par = JSON.parse(options.body)
 	/* let resData = {
@@ -26,7 +26,7 @@ Mock.mock('/v1/login', 'post', (options) => {
 	
 })
 // 登出
-Mock.mock('/v1/logout', 'post', (options) => {
+Mock.mock(RegExp('/v1/logout' + ".*"), 'post', (options) => {
 	console.log(options)
 	let resData = {
 		error: 0,
@@ -37,7 +37,7 @@ Mock.mock('/v1/logout', 'post', (options) => {
 	return resData
 })
 // 获取动态路由（模拟接口，根据options.body参数返回不同路由）
-Mock.mock('/v1/getPermissionMenu', 'post', (options) => {
+Mock.mock(RegExp('/v1/getPermissionMenu' + ".*"), 'post', (options) => {
 	console.log(options)
 	let par = JSON.parse(options.body)
 	
@@ -169,7 +169,7 @@ Mock.mock('/v1/getPermissionMenu', 'post', (options) => {
 })
 
 // 获取表格数据
-Mock.mock('/v1/getTableData', 'post', (options) => {
+Mock.mock(RegExp('/v1/getTableData' + ".*"), 'post', (options) => {
 	console.log(options)
 	let tableData = {
 		error: 0,

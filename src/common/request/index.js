@@ -4,7 +4,8 @@ import { ElMessage } from 'element-plus'
 import router from '@/router'
 // MD5
 import { getSignString, md5 } from './tools'
-import { baseUrl, requstParams } from '@/common/config/config'
+
+import { baseUrl, requstParams } from '@/common/config'
 
 const service = axios.create({
 	// process.env.NODE_ENV === 'development' 来判断是否开发环境
@@ -17,11 +18,12 @@ service.interceptors.request.use(
 	config => {
 		// lss 2021/5/10 新增ajax请求的公共入参封装 ==============================
 		// config.baseUrl = baseUrl
-		/* config.params = { ...requstParams() }
+		config.params = { ...requstParams() }
 		
-		const newAllPar = { ...config.params, ...config.data }
-		config.header['x-sign'] = md5(md5(getSignString(newAllPar)) + md5('73069389154442C614BE8D8202FDD054532C28D5412DD75BF975FB951C740A30'))
-		 */
+		// const newAllPar = { ...config.params, ...config.data }
+		// config.header['x-sign'] = md5(md5(getSignString(newAllPar)) + md5('73069389154442C614BE8D8202FDD054532C28D5412DD75BF975FB951C740A30'))
+		config.headers.Authorization = sessionStorage['token']; // 根据实际情况自行修改
+		
 		return config;
 	},
 	error => {

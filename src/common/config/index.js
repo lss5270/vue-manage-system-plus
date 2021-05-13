@@ -10,14 +10,7 @@ export const wechatId = 'wx50e92e0f0a318a15' // 公司公众号：wxeb8f03dbe322
 
 export const baseUrl = process.env.NODE_ENV === 'development' ? 'http://api.story_1146.xxx.test.xxx.com/v1' : 'http://api.story_1146.xxx.test.xxx.com/v1'// 'http://api.xxx.com/v1'
 
-// 白名单页面(移动端)
-export const publicPages = [
-	'/pages/tabBar/home/home',
-	'/pages/tabBar/goodsConfluence/goodsConfluence',
-	'/pages/tabBar/inviteRewards/inviteRewards',
-	'/pages/help/agree',
-	'/pages/help/sellerAgree',
-]
+export const whiteList = ['/login', '/error/403', '/error/404'];	// 无需授权的白名单
 
 export const PLATFORM = process.env.UNI_PLATFORM || process.env.VUE_APP_PLATFORM // h5、mp-weixin、mp-alipay、mp-baidu、mp-toutiao、mp-qq
 
