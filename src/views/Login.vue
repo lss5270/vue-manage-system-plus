@@ -61,12 +61,12 @@ import {
 	// mapGetters
 } from 'vuex'
 
-import mixin3 from '@/common/mixin/mixin3' // test code
+// import mixin3 from '@/common/mixin/mixin3' // test code
 export default {
 	// components: {},
 	// 在初始 prop 解析之后立即调用，在 beforeCreate 钩子之前调用。setup 不是生命周期钩子函数！它只是基于 beforeCreate 运行，但函数内部无法通过 this 获取组件实例，setup中是没有this上下文的
 	setup(props, context) {
-		const { $push } = mixin3() 	// test code
+		// const { $push } = mixin3() 	// test code
 		const router = useRouter()	// vue3.0已去掉this.$router
 		// const route = useRoute()
 		const store = useStore()	// vuex4.0已去掉this.$store
