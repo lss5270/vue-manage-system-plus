@@ -113,6 +113,7 @@ export default {
 			if (res){
 				// await getPermissionMenu()
 				router.push('/');
+				// this.push('/');
 			}
 		}
 		
