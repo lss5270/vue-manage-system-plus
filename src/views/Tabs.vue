@@ -121,6 +121,7 @@
 <script>
 export default {
 	name: 'Tabs',
+	title: '标签',
 	data() {
 		return {
 			message: 'first',

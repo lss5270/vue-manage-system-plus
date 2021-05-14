@@ -184,7 +184,8 @@
 <script>
 import Schart from 'vue-schart';
 export default {
-	name: 'Dashboard',
+	name: 'DashBoard',
+	title: '系统首页',
 	components: {
 		Schart
 	},

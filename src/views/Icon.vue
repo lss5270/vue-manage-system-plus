@@ -65,6 +65,7 @@
 <script>
 export default {
 	name: 'Icon',
+	title: '自定义图标',
 	data() {
 		return {
 			keyword: '',

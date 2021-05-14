@@ -64,6 +64,7 @@
 import Schart from 'vue-schart';
 export default {
 	name: 'Basecharts',
+	title: '图表',
 	components: {
 		Schart
 	},

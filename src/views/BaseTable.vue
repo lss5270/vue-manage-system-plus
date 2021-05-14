@@ -183,7 +183,8 @@
 <script>
 import { getTableData } from '@/api/index';
 export default {
-	name: 'Basetable',
+	name: 'BaseTable',
+	title: '表格',
 	data() {
 		return {
 			query: {

@@ -8,13 +8,13 @@ Mock.mock(RegExp('/v1/login' + ".*"), 'post', (options) => {
 	/* let resData = {
 		loginCity: '广州',
 		loginDate: '2021-3-3',
-		headimg: 'http://www.master.ypzan.test.chaozhiit.com:880/Public/headImage/20210421/2104211400575741.jpg',
+		headimg: 'http://xx.com:880/Public/headImage/20210421/2104211400575741.jpg',
 		mobile: '',
 		nickName: JSON.parse(options.body).username,
 		token: '5b21ca65059261c92b8e996669129783',
 		uid: 139620
 	} */
-	let resData = {"error":0,"msg":"ok","body":{loginCity: '广州',loginDate: '2021-3-3',"token":"153eae3fe54315062d2151f9d1218f54","uid":139620,"nickName":JSON.parse(options.body).username,"mobile":"","fund":"24101.74","fund_lock":"955.00","gcoin":36,"headimg":"http:\/\/www.master.ypzan.test.chaozhiit.com:880\/Public\/headImage\/20210421\/2104211400575741.jpg"},"time":1620468008}
+	let resData = {"error":0,"msg":"ok","body":{loginCity: '广州',loginDate: '2021-3-3',"token":"153eae3fe54315062d2151f9d1218f54","uid":139620,"nickName":JSON.parse(options.body).username,"mobile":"","fund":"24101.74","fund_lock":"955.00","gcoin":36,"headimg":"xx.com:880\/Public\/headImage\/20210421\/2104211400575741.jpg"},"time":1620468008}
 	let errorRes = {"error":70001,"msg":"账号不存在","time":1620467475}
 	if(par.username === 'admin' && par.password === '123123'){
 		return resData
@@ -53,7 +53,7 @@ Mock.mock(RegExp('/v1/getPermissionMenu' + ".*"), 'post', (options) => {
 			},
 			{
 				icon: 'el-icon-lx-cascades',
-				path: '/table',
+				path: '/baseTable',
 				title: '基础表格'
 			},
 			{
@@ -97,7 +97,7 @@ Mock.mock(RegExp('/v1/getPermissionMenu' + ".*"), 'post', (options) => {
 			},
 			{
 				icon: 'el-icon-pie-chart',
-				path: '/charts',
+				path: '/baseCharts',
 				title: 'schart图表'
 			},
 			{
@@ -135,7 +135,7 @@ Mock.mock(RegExp('/v1/getPermissionMenu' + ".*"), 'post', (options) => {
 			},
 			{
 				icon: 'el-icon-lx-cascades',
-				path: '/table',
+				path: '/baseTable',
 				title: '基础表格'
 			},
 			{

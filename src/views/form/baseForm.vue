@@ -120,6 +120,7 @@
 <script>
 export default {
 	name: 'Baseform',
+	title: '表单',
 	data() {
 		return {
 			options: [
