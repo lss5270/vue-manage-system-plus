@@ -143,7 +143,7 @@ Mock.mock(RegExp('/v1/getPermissionMenu' + ".*"), 'post', (options) => {
 				path: '/i18n',
 				title: '国际化功能'
 			},
-			{
+			/* {
 				icon: 'el-icon-lx-warn',
 				path: '/error',
 				title: '错误处理',
@@ -157,7 +157,7 @@ Mock.mock(RegExp('/v1/getPermissionMenu' + ".*"), 'post', (options) => {
 						title: '404页面'
 					}
 				]
-			},
+			}, */
 			
 		],
 	}

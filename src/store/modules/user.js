@@ -33,9 +33,10 @@ const mutations = {
 		sessionStorage['userInfo'] = JSON.stringify(payload.userInfo) 
 	},
 	DO_LOGOUT(state) {
-		state.token = ''
-		state.openid = null
 		// 登出后清除相关状态数据 2021/3/9
+		// state = {}	// 不能这样写，导致数据更新异常bug
+		state.token = ''
+		state.permissionMenu = []
 		sessionStorage.clear()
 	},
 	SET_OPENID(state, openid) {
@@ -90,20 +91,21 @@ const actions = {
 			})
 		})
 	},
-	/* logout({commit}){
-		return new Promise((rs,rj)=>{
+	// 退出
+	logout({ commit }){
+		return new Promise((rs, rj)=>{
 			logout().then(res=>{
 				commit('DO_LOGOUT')
-				rs()
+				rs(res)
 			}).catch(err=>{
 				rj(err)
 			})
 		})
-	}, */
-	// 直接异步函数写法 
-	async logout({ commit }){
-		commit('DO_LOGOUT', await logout())
 	},
+	// 直接异步函数写法 
+	// async logout({ commit }){
+	// 	commit('DO_LOGOUT', await logout())
+	// },
 	/* async getUserInfo({ commit }){
 		// commit('SET_USERINFO', { userInfo: getUserInfo() })
 		return new Promise((rs, rj)=>{

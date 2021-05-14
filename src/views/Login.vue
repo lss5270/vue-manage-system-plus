@@ -69,8 +69,8 @@ export default {
 		// const { $push } = mixin3() 	// test code
 		const router = useRouter()	// vue3.0已去掉this.$router
 		// const route = useRoute()
-		const store = useStore()	// vuex4.0已去掉this.$store
-		const elmRefs = ref(null); 	// 获取真实dom ，vuex4.0已去掉this.$refs。所以使用过程有点非常曲折。。。
+		const store = useStore()	// vue3.0已去掉this.$store
+		const elmRefs = ref(null); 	// 获取真实dom ，vue3.0已去掉this.$refs。所以使用过程有点非常曲折。。。
 		
 		// 方式一： 可传入任意类型的值，改变值的时候必须使用其value属性,例 refData.value = 2
 		// const refData = ref(0)
@@ -91,14 +91,12 @@ export default {
 		})
 		
 		onMounted(() => {
-			// this.$store.commit('system/clearTags');
 			store.commit('system/clearTags');
 			// console.log(elmRefs.value); // 得到一个 RefImpl 的对象, 通过 .value 访问到数据 
 		})
 		
 		// 表单校验
 		const submitForm = async () => {
-			// this.$refs.refLogin.validate(valid => {
 			elmRefs.value.validate(valid => {
 				if (valid) {
 					// 改成vuex登录模式，并且同时存储用户信息

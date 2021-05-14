@@ -73,7 +73,7 @@
 export default {
 	data() {
 		return {
-			menuItems: []
+			// menuItems: []
 		};
 	},
 	computed: {
@@ -83,11 +83,12 @@ export default {
 		collapse() {
 			return this.$store.state.system.collapse
 		},
-		// menuItems() {
-		// 	return this.$store.state.user.permissionMenu
-		// },
+		menuItems() {
+			return this.$store.state.user.permissionMenu
+		},
 	},
 	mounted() {
+		// 用户每次刷新页面都会重新获取一遍菜单，防止store中的数据丢失
 		this.getPermissionMenu()
 	},
 	methods: {
@@ -98,8 +99,7 @@ export default {
 			const res = await this.$store.dispatch('user/getPermissionMenu', par)
 			if (res){ 
 				console.log('接口返回的菜单数组为：', res)
-				this.menuItems = res
-				sessionStorage['permissionMenu'] = JSON.stringify(res)
+				// this.menuItems = res
 			}
 		}
 	}

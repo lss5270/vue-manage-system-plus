@@ -71,7 +71,71 @@
 	</div>
 </template>
 <script>
+import { reactive, onMounted, computed, toRefs } from 'vue'
+import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
+
 export default {
+	setup() {
+	    const router = useRouter()
+	    const store = useStore()
+	    const state = reactive({
+			fullscreen: false,
+			message: 2,
+		})
+		
+		const userInfo = computed(() => {
+			// console.log(JSON.parse(sessionStorage.getItem('userInfo')))
+			return JSON.parse(sessionStorage.getItem('userInfo'));
+		})
+		const collapse = computed(() => {
+			return store.state.system.collapse;
+		})
+			
+		onMounted(() => {
+			init()
+		})
+		
+		const init = () => {
+			// 小窗口默认折叠菜单
+			if (document.body.clientWidth < 1280) {
+				store.commit('system/hadndleCollapse', true);
+			}
+			window.onresize = () => {
+				if (document.body.clientWidth < 1280) {
+					store.commit('system/hadndleCollapse', true);
+				} else {
+					store.commit('system/hadndleCollapse', false);
+				}
+			}
+		}
+		
+		// 用户名下拉菜单选择事件
+		const handleCommand = async (command) => {
+			if (command === 'loginout') {
+				const res = await store.dispatch('user/logout', {})
+				if (res){
+					router.push('/login');
+				}
+			}
+		}
+		
+		// 侧边栏折叠
+		const collapseChage = () => {
+			store.commit('system/hadndleCollapse', !collapse.value);
+		}
+		
+		return {
+		    ...toRefs(state),
+			userInfo,
+			collapse,
+		    handleCommand,
+			collapseChage
+		}
+	}
+	
+	/* 
+	// 2.0语法注释
 	data() {
 		return {
 			fullscreen: false,
@@ -80,8 +144,7 @@ export default {
 	},
 	computed: {
 		userInfo() {
-			let userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
-			return userInfo
+			return JSON.parse(sessionStorage.getItem('userInfo'));
 		},
 		collapse() {
 			// return JSON.parse(sessionStorage['collapse']);
@@ -100,7 +163,7 @@ export default {
 			} else {
 				this.$store.commit('system/hadndleCollapse', false);
 			}
-		};
+		}
 	},
 	methods: {
 		// 用户名下拉菜单选择事件
@@ -120,7 +183,7 @@ export default {
 		collapseChage() {
 			this.$store.commit('system/hadndleCollapse', !this.collapse);
 		}
-	}
+	} */
 };
 </script>
 <style scoped>

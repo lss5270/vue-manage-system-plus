@@ -82,16 +82,14 @@ const routes = [
 				meta: {
 					title: '找不到页面'
 				},
-				component: () => import (/* webpackChunkName: "404" */
-					'@/views/404.vue')
+				component: () => import ('@/views/404.vue')
 			}, {
 				path: '/error/403',
 				name: '403',
 				meta: {
 					title: '没有权限'
 				},
-				component: () => import (/* webpackChunkName: "403" */
-					'@/views/403.vue')
+				component: () => import ('@/views/403.vue')
 			}
 		]
 	}, {
@@ -106,6 +104,7 @@ const routes = [
 	},
 	{ path: '/:pathMatch(.*)*', redirect: '/error/404', hidden: true } // 添加404重定向，防止用户随意敲链接
 ];
+// 上述路由配置，后续改成使用fs读取views文件夹下文件配置路由
 
 const router = createRouter({
 	// history: createWebHistory(process.env.BASE_URL),
@@ -118,19 +117,14 @@ const router = createRouter({
 // 全局钩子
 router.beforeEach((to, from, next) => {
 	document.title = `${to.meta.title} | XX后台管理系统`;
-	
 	const token = sessionStorage.getItem('token');
-	const permissionMenu = sessionStorage.getItem('permissionMenu') || '';
-	// const permissionMenu = store.state.user.permissionMenu;
-	let topath = to.path.replace('/', '');
-	// console.log(permissionMenu, topath)
-	
+	const permissionMenu = store.state.user.permissionMenu;
 	if (!token && to.path !== '/login') { // 未登录重定向到登录（除了登录页，其他都需要登录后才能进入）
 		next('/login');
 	}
-	else if (permissionMenu.length > 0 && permissionMenu.indexOf(topath) === -1) { // 防止用户通过敲击路由的方式，进入未授权菜单
+	else if (permissionMenu.length > 0 && JSON.stringify(permissionMenu).indexOf(to.path) === -1) { // 防止用户通过敲击路由的方式，进入未授权菜单
 		// 进入未授权页面，假如在白名单内，直接进入
-		if (whiteList.indexOf(to.path) !== -1) {
+		if (JSON.stringify(whiteList).indexOf(to.path) !== -1) {
 			next();
 		}
 		// 进入未授权页面，假如未在白名单内，重定向到403
