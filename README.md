@@ -1,10 +1,10 @@
 # vue-manage-system-plus
 
-  <a href="https://github.com/vuejs/vue">
+  <a href="https://v3.cn.vuejs.org/">
     <img src="https://img.shields.io/badge/vue-3.0.0-brightgreen.svg" alt="vue">
   </a>
   <a href="https://element-plus.org/">
-    <img src="https://img.shields.io/badge/element--ui-2.8.2-brightgreen.svg" alt="element-ui">
+    <img src="https://img.shields.io/badge/element--plus-1.0.2beta.33-brightgreen.svg" alt="element-ui">
   </a>
   <a href="https://github.com/lss5270/vue-manage-system-plus/blob/main/LICENSE">
     <img src="https://img.shields.io/github/license/mashape/apistatus.svg" alt="license">
