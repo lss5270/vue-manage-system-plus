@@ -2,7 +2,7 @@
 	<div class="sidebar">
 		<el-menu
 			class="sidebar-el-menu"
-			:default-active="onRoutes"
+			:default-active="currentPath"
 			:collapse="collapse"
 			background-color="#324157"
 			text-color="#bfcbd9"
@@ -69,15 +69,54 @@
 </template>
 
 <script>
+import { reactive, onMounted, computed, toRefs } from 'vue'
+import { useRoute } from 'vue-router'
+import { useStore } from 'vuex'
 
 export default {
+	setup() {
+	    const route = useRoute()
+	    const store = useStore()
+	    
+		const currentPath = computed(() => {
+			return route.path;
+		})
+		const collapse = computed(() => {
+			return store.state.system.collapse;
+		})
+		const menuItems = computed(() => {
+			return store.state.user.permissionMenu
+		})
+		
+		onMounted(() => {
+			getPermissionMenu()
+		})
+		
+		// 获取当前用户权限菜单等（暂时放在组件内获取，不然刷新页面菜单会消失）
+		const getPermissionMenu = async () => {
+			// 动态获取菜单接口入参一般为token或者userId，因为采用mock模拟返回所以临时使用nickName作为角色入参，实际开发可根据接口差异修改入参
+			let par = { username: JSON.parse(sessionStorage['userInfo']).nickName }
+			const res = await store.dispatch('user/getPermissionMenu', par)
+			if (res){ 
+				console.log('接口返回的菜单数组为：', res)
+			}
+		}
+		
+		return {
+		    currentPath,
+			collapse,
+		    menuItems,
+		}
+	}
+	/* 
+	// 2.0语法注释
 	data() {
 		return {
 			// menuItems: []
 		};
 	},
 	computed: {
-		onRoutes() {
+		currentPath() {
 			return this.$route.path;
 		},
 		collapse() {
@@ -92,7 +131,7 @@ export default {
 		this.getPermissionMenu()
 	},
 	methods: {
-		// 获取当前用户权限菜单等（暂时放在该组件获取，不然刷新页面菜单会消失）
+		// 获取当前用户权限菜单等（暂时放在组件内获取，不然刷新页面菜单会消失）
 		async getPermissionMenu() {
 			// 动态获取菜单接口入参一般为token或者userId，因为采用mock模拟返回所以临时使用nickName作为角色入参，实际开发可根据接口差异修改入参
 			let par = { username: JSON.parse(sessionStorage['userInfo']).nickName }
@@ -102,7 +141,7 @@ export default {
 				// this.menuItems = res
 			}
 		}
-	}
+	} */
 };
 </script>
 

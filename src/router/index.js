@@ -124,7 +124,7 @@ router.beforeEach((to, from, next) => {
 	}
 	else if (permissionMenu.length > 0 && JSON.stringify(permissionMenu).indexOf(to.path) === -1) { // 防止用户通过敲击路由的方式，进入未授权菜单
 		// 进入未授权页面，假如在白名单内，直接进入
-		if (JSON.stringify(whiteList).indexOf(to.path) !== -1) {
+		if (whiteList.find((v) => v === to.path)) {
 			next();
 		}
 		// 进入未授权页面，假如未在白名单内，重定向到403
