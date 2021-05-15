@@ -13,7 +13,7 @@ let dynamicItems = []
 contextInfo.keys().forEach(fileName => {
 	const pathConfig = contextInfo(fileName)
 	let path = '/' + fileName.substring(2, fileName.length - 4)
-	if (path === '/login') { // 非嵌套
+	if (path === '/login' || path.indexOf('/modal/') !== -1) { // 过滤非嵌套和模态弹窗
 		return
 	}
 	dynamicItems.push({
@@ -25,7 +25,7 @@ contextInfo.keys().forEach(fileName => {
 		component: pathConfig.default
 	})
 })
-
+debugger
 const routes = [
 	{
 		path: '/',
