@@ -61,35 +61,34 @@ import {
 	// mapGetters
 } from 'vuex'
 
-// import mixin3 from '@/common/mixin/mixin3' // test code
+// ====== tips: 本案例进行了vue3.0语法新手教程注释，开发时可自行去掉注释说明 ======
 export default {
 	name: 'Login',
 	title: '登录', // 动态注册路由时采用name作为title
 	// components: {},
 	// 在初始 prop 解析之后立即调用，在 beforeCreate 钩子之前调用。setup 不是生命周期钩子函数！它只是基于 beforeCreate 运行，但函数内部无法通过 this 获取组件实例，setup中是没有this上下文的
 	setup(props, context) {
-		// const { $push } = mixin3() 	// test code
 		const router = useRouter()	// vue3.0已去掉this.$router
 		// const route = useRoute()
 		const store = useStore()	// vue3.0已去掉this.$store
 		const elmRefs = ref(null); 	// 获取真实dom ，vue3.0已去掉this.$refs。所以使用过程有点非常曲折。。。
-		
+		const rules = {
+			username: [
+				{ required: true, message: '请输入用户名', trigger: 'blur' }
+			],
+			password: [
+				{ required: true, message: '请输入密码', trigger: 'blur' }
+			]
+		}
 		// 方式一： 可传入任意类型的值，改变值的时候必须使用其value属性,例 refData.value = 2
 		// const refData = ref(0)
 		// 方式二： 只能传入引用类型的值
-		const state = reactive({ // 创建响应式
+		const state = reactive({ // 创建响应式(视图所需要的变量)
+			// 在 data 里面的数据每次变化时都会通知视图层重新渲染页面。所以如果不是视图所需要的变量，可以不定义在 data 中，以避免造成资源浪费
 			param: {
 				username: 'admin',
 				password: '123123'
 			},
-			rules: {
-				username: [
-					{ required: true, message: '请输入用户名', trigger: 'blur' }
-				],
-				password: [
-					{ required: true, message: '请输入密码', trigger: 'blur' }
-				]
-			}
 		})
 		
 		onMounted(() => {
@@ -132,6 +131,7 @@ export default {
 		// 暴露给tmp
 		return {
 			...toRefs(state), // ref和原始property已经“链接”起来了，每个property都是指向原始对象相应 property 的 ref。
+			rules,
 			submitForm,
 			elmRefs,
 		}
