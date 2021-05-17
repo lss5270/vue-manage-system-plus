@@ -20,7 +20,10 @@
 					class="tags-li-icon"
 					@click="closeTags(index)"
 				>
-					<i class="el-icon-close" />
+					<i
+						v-if="item.path !== '/dashboard'"
+						class="el-icon-close"
+					/>
 				</span>
 			</li>
 		</ul>
@@ -115,7 +118,7 @@ export default {
 			});
 			if (!isExist) {
 				// 后续优化改成滚动条模式
-				if (this.tagsList.length >= 8) {
+				if (this.tagsList.length >= 10) {
 					this.$store.commit('system/delTagsItem', { index: 0 });
 				}
 				this.$store.commit('system/setTagsItem', {

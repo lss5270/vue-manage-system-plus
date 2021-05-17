@@ -10,6 +10,13 @@ const state = {
 	collapse: false,	// 是否折叠收起菜单
 }
 
+// 首页条目
+const homeItem = [{
+	name: 'DashBoard',
+	path: '/dashboard',
+	title: '系统首页'
+}]
+
 const mutations = {
 	// 删除标签页
 	delTagsItem(state, data) {
@@ -19,13 +26,18 @@ const mutations = {
 	setTagsItem(state, data) {
 	    state.tagsList.push(data)
 	},
-	// 关闭所有
-	clearTags(state) {
-	    state.tagsList = []
+	// 关闭所有（首页不可关闭）
+	clearTags(state) { 
+	    // state.tagsList = []
+		state.tagsList = [...homeItem]
 	},
-	// 关闭其他
+	// 关闭其他（首页不可关闭）
 	closeTagsOther(state, data) {
-	    state.tagsList = data;
+		// state.tagsList = data;
+		state.tagsList = [...homeItem]
+		if (data[0].path !== homeItem[0].path){
+			state.tagsList.push(data[0])
+		}
 	},
 	// 关闭当前标签页
 	closeCurrentTag(state, data) {

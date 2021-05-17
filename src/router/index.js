@@ -25,7 +25,7 @@ contextInfo.keys().forEach(fileName => {
 		component: pathConfig.default
 	})
 })
-debugger
+
 const routes = [
 	{
 		path: '/',
