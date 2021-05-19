@@ -18,7 +18,6 @@
 						</keep-alive>
 					</transition>
 				</router-view>
-				<!-- <el-backtop target=".content"></el-backtop> -->
 			</div>
 		</div>
 	</div>

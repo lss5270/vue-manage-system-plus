@@ -8,7 +8,7 @@ export const appid = process.env.NODE_ENV === 'development' ? 10001 : 10001 // 1
 
 export const wechatId = 'wx50e92e0f0a318a15' // 公司公众号：wxeb8f03dbe32285xx 个人号测试：wx50e92e0f0a318a15
 
-export const baseUrl = process.env.NODE_ENV === 'development' ? 'http://api.story_1146.xxx.test.xxx.com/v1' : 'http://api.story_1146.xxx.test.xxx.com/v1'// 'http://api.xxx.com/v1'
+export const baseUrl = process.env.NODE_ENV === 'development' ? 'http://192.168.130.120:8007' : 'http://192.168.130.120:8007'// 'http://api.xxx.com/v1'
 
 export const whiteList = ['/login', '/error/403', '/error/404'];	// 无需授权的白名单
 
@@ -17,9 +17,7 @@ export const PLATFORM = process.env.UNI_PLATFORM || process.env.VUE_APP_PLATFORM
 // 请求公共入参
 export const requstParams = () => {
 	let par = {
-		appid: appid, 								// 应用分配的APPID
 		token: sessionStorage['token'],				// 登陆状态下传递的登陆认证TOKEN，需要登陆状态的接口，此值为必填
-		_platform: PLATFORM === 'h5' ? 3 : 5,		// 请求的平台参数，PC:1; APP:2; H5:3; wechat:4; 小程序:5
 		t: parseInt(new Date().getTime() / 1000), 	// 当前时间的时间戳，系统最大允许误差为前后3分钟
 	}
 	if (!par.token){
