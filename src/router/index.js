@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router'
-import Home from '@/views/home.vue'
+import Home from '@/views/Home.vue'
 import store from '@/store'
 import { whiteList } from '@/common/config'
 
@@ -28,114 +28,28 @@ contextInfo.keys().forEach(fileName => {
 
 const routes = [
 	{
-		path: '/',
-		redirect: '/dashboard'
-	}, 
-	{
-		path: '/',
+		path: '/home',
 		name: 'home',
 		component: Home,
 		children: dynamicItems
-		// 旧版路由已注释，使用新版自动读取
-		/* [
-			{
-				path: '/dashboard',
-				name: 'dashboard',
-				meta: {
-					title: '系统首页'
-				},
-				component: () => import ('@/views/dashboard.vue')
-			}, {
-				path: '/baseTable',
-				name: 'baseTable',
-				meta: {
-					title: '表格'
-				},
-				component: () => import ('@/views/baseTable.vue')
-			}, {
-				path: '/baseCharts',
-				name: 'baseCharts',
-				meta: {
-					title: '图表'
-				},
-				component: () => import ('@/views/baseCharts.vue')
-			}, {
-				path: '/form/baseForm',
-				name: 'baseForm',
-				meta: {
-					title: '表单'
-				},
-				component: () => import ('@/views/baseForm.vue')
-			}, {
-				path: '/form/upload',
-				name: 'upload',
-				meta: {
-					title: '文件上传'
-				},
-				component: () => import ('@/views/upload.vue')
-			}, {
-				path: '/tabs',
-				name: 'tabs',
-				meta: {
-					title: 'tab标签'
-				},
-				component: () => import ('@/views/tabs.vue')
-			}, {
-				path: '/i18n',
-				name: 'i18n',
-				meta: {
-					title: '国际化语言'
-				},
-				component: () => import ('@/views/i18n.vue')
-			}, {
-				path: '/icon',
-				name: 'icon',
-				meta: {
-					title: '自定义图标'
-				},
-				component: () => import ('@/views/icon.vue')
-			}, {
-				path: '/error/404',
-				name: '404',
-				meta: {
-					title: '找不到页面'
-				},
-				component: () => import ('@/views/error/404.vue')
-			}, {
-				path: '/error/403',
-				name: '403',
-				meta: {
-					title: '没有权限'
-				},
-				component: () => import ('@/views/error/403.vue')
-			}
-		] */
 	},
-	
 	{
 		path: '/login',
 		name: 'login',
-		meta: {
-			title: '登录'
-		},
-		component: () => import (
-			// webpackChunkName: "login"
-			'@/views/login.vue')
+		meta: { title: '登录' },
+		component: () => import ('@/components/Login.vue')
 	},
 	{ path: '/:pathMatch(.*)*', redirect: '/error/404', hidden: true } // 添加404重定向，防止用户随意敲链接
 ];
 
 const router = createRouter({
-	// history: createWebHistory(process.env.BASE_URL),
-	// history: createWebHistory('/vue-manage-system-plus-demo/'),	// 托管文件夹名称，https://lss5270.github.io/vue-manage-system-plus-demo/
-	// history: createWebHashHistory('/vue-manage-system-plus-demo/'),	// 给出的网址为 `https://example.com/vue-manage-system-plus-demo#`
 	history: createWebHashHistory(),
 	routes
 });
 
 // 全局钩子
 router.beforeEach((to, from, next) => {
-	document.title = `${to.meta.title} | XX后台管理系统`;
+	document.title = `${to.meta.title} | 物息院文档后台管理系统`;
 	const token = sessionStorage.getItem('token');
 	const permissionMenu = store.state.user.permissionMenu;
 	if (!token && to.path !== '/login') { // 未登录重定向到登录（除了登录页，其他都需要登录后才能进入）

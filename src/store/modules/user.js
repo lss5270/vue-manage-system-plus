@@ -1,3 +1,4 @@
+import http from '@/common/request';
 /**
  * 状态管理--用户（刷新页面会消失，要兼容浏览器需要本地存一份）
  * @description 用户相关的数据全部存于该文件
@@ -9,7 +10,6 @@ import {
 	login,
 	logout,
 	getPermissionMenu,
-	// getUserInfo
 } from '@/api/user'
 
 const state = {
@@ -30,7 +30,7 @@ const mutations = {
 		/* cache.put('token', payload.userInfo.token, 60 * 60 * 8)
 		cache.put('userInfo', payload.userInfo, 60 * 60 * 8) 	// 只包含部分用户信息 */
 		sessionStorage['token'] = payload.userInfo.token
-		sessionStorage['userInfo'] = JSON.stringify(payload.userInfo) 
+		sessionStorage['userInfo'] = JSON.stringify(payload.userInfo)
 	},
 	DO_LOGOUT(state) {
 		// 登出后清除相关状态数据 2021/3/9
@@ -46,7 +46,7 @@ const mutations = {
 	SET_USERINFO(state, payload) {
 		state.userInfo = payload.userInfo
 		// cache.put('userInfo', payload.userInfo, 60 * 60 * 8) // 包含全部用户信息
-		sessionStorage['userInfo'] = JSON.stringify(payload.userInfo) 
+		sessionStorage['userInfo'] = JSON.stringify(payload.userInfo)
 	},
 	// 设置微信信息
 	SET_WXINFO(state, payload) {
@@ -62,42 +62,42 @@ const mutations = {
 // 使用方法：在组件中使用 this.$store.dispatch('user/xxx') 分发 action，或者使用 mapActions 辅助函数将组件的 methods 映射为 store.dispatch 调用
 const actions = {
 	// 账号、手机号登录
-	login({ commit }, data){
-		return new Promise((rs, rj)=>{
+	login({ commit }, data) {
+		return new Promise((rs, rj) => {
 			// 返回部分用户信息
-			login(data).then(res=>{
-				if (!res){
+			http.post('/api/user/login', data).then(result => {
+				if (!result) {
 					return
 				}
-				commit('DO_LOGIN', { userInfo: res })
-				rs(res)
-			}).catch(err=>{
+				commit('DO_LOGIN', { userInfo: result })
+				rs(result)
+			}).catch(err => {
 				rj(err)
 			})
 		})
 	},
 	// 第三方平台登录
-	thirdLogin({ commit }, data){
-		return new Promise((rs, rj)=>{
+	thirdLogin({ commit }, data) {
+		return new Promise((rs, rj) => {
 			// 返回部分用户信息
-			thirdpartyLogin(data).then(res=>{
-				if (!res){
+			thirdpartyLogin(data).then(res => {
+				if (!res) {
 					return
 				}
 				commit('DO_LOGIN', { userInfo: res })
 				rs(res)
-			}).catch(err=>{
+			}).catch(err => {
 				rj(err)
 			})
 		})
 	},
 	// 退出
-	logout({ commit }){
-		return new Promise((rs, rj)=>{
-			logout().then(res=>{
+	logout({ commit }) {
+		return new Promise((rs, rj) => {
+			logout().then(res => {
 				commit('DO_LOGOUT')
 				rs(res)
-			}).catch(err=>{
+			}).catch(err => {
 				rj(err)
 			})
 		})
@@ -118,22 +118,53 @@ const actions = {
 			})
 		})
 	}, */
-	setUserInfo({ commit }, data){
+	setUserInfo({ commit }, data) {
 		commit('SET_USERINFO', { userInfo: data })
 	},
 	// 获取用户权限菜单
-	getPermissionMenu({ commit }, data){
-		return new Promise((rs, rj)=>{
+	getPermissionMenu({ commit }, data) {
+		return new Promise((rs, rj) => {
 			// 返回部分用户信息
-			getPermissionMenu(data).then(res=>{
-				if (!res){
-					return
-				}
-				commit('SET_PERMISSIONMENU', { permissionMenu: res })
-				rs(res)
-			}).catch(err=>{
-				rj(err)
-			})
+			let res = {
+				error: 0,
+				msg: 'ok',
+				time: 1620466240,
+				body: [
+					{
+						icon: 'el-icon-lx-home',
+						path: '/dashboard',
+						title: '系统首页'
+					},
+					{
+						icon: 'el-icon-lx-cascades',
+						path: '/baseTable',
+						title: '基础表格'
+					},
+					{
+						icon: 'el-icon-lx-global',
+						path: '/i18n',
+						title: '国际化功能'
+					},
+					/* {
+						icon: 'el-icon-lx-warn',
+						path: '/error',
+						title: '错误处理',
+						children: [
+							{
+								path: '/error/403',
+								title: '403页面'
+							},
+							{
+								path: '/error/404',
+								title: '404页面'
+							}
+						]
+					}, */
+					
+				],
+			}
+			commit('SET_PERMISSIONMENU', { permissionMenu: res })
+			rs(res)
 		})
 	},
 }
