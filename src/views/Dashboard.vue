@@ -8,8 +8,13 @@
 					style="height:252px;"
 				>
 					<div class="user-info">
-						<img
+						<!-- <img
 							src="@/assets/img/img.jpg"
+							class="user-avator"
+							alt
+						> -->
+						<img
+							:src="userInfo.headimg"
 							class="user-avator"
 							alt
 						>
@@ -146,10 +151,22 @@
 								</div>
 							</template>
 						</el-table-column>
-						<el-table-column width="60">
-							<template #default>
-								<i class="el-icon-edit" />
-								<i class="el-icon-delete" />
+						<el-table-column
+							width="80"
+							align="right"
+							class-name="table_operate"
+						>
+							<template
+								#default="scope"
+							>
+								<i
+									v-if="!scope.row.status"
+									class="el-icon-edit"
+								/>
+								<i
+									class="el-icon-delete"
+									@click="deleteRow(scope.$index, todoList)"
+								/>
 							</template>
 						</el-table-column>
 					</el-table>
@@ -304,6 +321,9 @@ export default {
 	},
 
 	methods: {
+		deleteRow(index, rows) {
+			rows.splice(index, 1);
+		},
 		changeDate() {
 			const now = new Date().getTime();
 			this.data.forEach((item, index) => {
@@ -316,7 +336,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .el-row {
     margin-bottom: 20px;
 }
@@ -424,5 +444,11 @@ export default {
 .schart {
     width: 100%;
     height: 300px;
+}
+.table_operate{
+	text-align: right;
+	i{
+		margin-left: 15px;
+	}
 }
 </style>
