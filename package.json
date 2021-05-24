@@ -18,6 +18,7 @@
 	"author": "lss <81438234@qq.com> (https://github.com/lss5270)",
     "license": "MIT",
     "scripts": {
+		"dev": "npm run serve",
         "serve": "vue-cli-service serve",
         "build": "vue-cli-service build",
         "lint": "vue-cli-service lint --fix"
