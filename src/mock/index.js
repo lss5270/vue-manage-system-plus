@@ -53,6 +53,21 @@ Mock.mock(RegExp('/v1/getPermissionMenu' + ".*"), 'post', (options) => {
 				title: 'tab选项卡'
 			},
 			{
+				icon: 'el-icon-office-building',
+				path: '/org',
+				title: '组织机构',
+				children: [
+					{
+						path: '/org/demo/index',
+						title: '组织机构逻辑'
+					},
+					{
+						path: '/org/menuManage/index',
+						title: '菜单管理'
+					}
+				]
+			},
+			{
 				icon: 'el-icon-lx-calendar',
 				path: '/form',
 				title: '表单相关',
@@ -210,7 +225,5 @@ Mock.mock(RegExp('/v1/getTableData' + ".*"), 'post', (options) => {
 	}
 	return tableData
 })
-
-
 
 
