@@ -1,7 +1,7 @@
 <template>
 	<div class="">
-		<p>组织机构逻辑展示--md文件显示暂未完成。如有需要请自行阅览org下的md文件</p>
-		<vue-markdown :source="mdSource" />
+		<p>因vue3.0的md支持不是很完善，故组织机构逻辑展示--md文件显示暂未完成。如有需要请自行阅览org下的md文件</p>
+		<!-- <vue-markdown :source="mdSource" /> -->
 	</div>
 </template>
 

@@ -3,7 +3,7 @@
 		<h2>{{ title }} -- 先用图片展示，后续再补上代码</h2>
 		<div class="">
 			<img
-				src="@/views/org/readmeImg/menu.jpg"
+				src="@/views/org/readmeImg/role.jpg"
 				alt=""
 				style="width: 100%"
 			>
@@ -14,10 +14,10 @@
 <script>
 import { reactive, onMounted, ref, toRefs } from 'vue'
 export default {
-	name: 'Menu',
-	title: '菜单管理',
+	name: 'Role',
+	title: '角色管理',
 	setup(props, context) {
-		const title = '菜单管理'
+		const title = '角色管理'
 		onMounted(() => {
 			
 		})

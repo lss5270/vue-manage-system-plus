@@ -62,9 +62,21 @@ Mock.mock(RegExp('/v1/getPermissionMenu' + ".*"), 'post', (options) => {
 						title: '组织机构逻辑'
 					},
 					{
+						path: '/org/userdepManage/index',
+						title: '用户部门管理'
+					},
+					{
 						path: '/org/menuManage/index',
 						title: '菜单管理'
-					}
+					},
+					{
+						path: '/org/roleManage/index',
+						title: '角色管理'
+					},
+					{
+						path: '/org/postManage/index',
+						title: '岗位管理'
+					},
 				]
 			},
 			{
