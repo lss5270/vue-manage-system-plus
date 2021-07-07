@@ -124,16 +124,20 @@ const actions = {
 	// 获取用户权限菜单
 	getPermissionMenu({ commit }, data){
 		return new Promise((rs, rj)=>{
-			// 返回部分用户信息
-			getPermissionMenu(data).then(res=>{
-				if (!res){
-					return
-				}
-				commit('SET_PERMISSIONMENU', { permissionMenu: res })
-				rs(res)
-			}).catch(err=>{
-				rj(err)
-			})
+			// 优先使用状态数据
+			if (state.permissionMenu.length > 0) {
+				rs(state.permissionMenu)
+			} else {
+				getPermissionMenu(data).then(res=>{
+					if (!res){
+						return
+					}
+					commit('SET_PERMISSIONMENU', { permissionMenu: res })
+					rs(res)
+				}).catch(err=>{
+					rj(err)
+				})
+			}
 		})
 	},
 }
