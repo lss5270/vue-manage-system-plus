@@ -50,7 +50,7 @@
 	</div>
 </template>
 
-<script lang="ts">
+<script>
 import { reactive, onMounted, ref, toRefs } from 'vue'
 import { useRouter, useRoute } from 'vue-router'	// 跟2.0中的this.$router和this.$route的相对应
 import {
