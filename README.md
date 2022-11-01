@@ -100,7 +100,7 @@ user账号登录返回4个菜单
 ```
 git clone https://github.com/lss5270/vue-manage-system-plus.git      // 把模板下载到本地
 cd vue-manage-system-plus    // 进入模板目录
-npm install         // 安装项目依赖，等待安装完成之后，安装失败可用 cnpm 或 yarn
+npm install 或 npm ci        // 安装项目依赖，等待安装完成之后，安装失败可用 cnpm 或 yarn
 
 // 开启服务器，浏览器访问 http://localhost:8080
 npm run serve
