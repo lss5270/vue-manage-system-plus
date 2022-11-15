@@ -6,8 +6,6 @@
  */
 export const appid = process.env.NODE_ENV === 'development' ? 10001 : 10001 // 10005
 
-export const wechatId = 'wx50e92e0f0a318a15' // 公司公众号：wxeb8f03dbe32285xx 个人号测试：wx50e92e0f0a318a15
-
 export const baseUrl = process.env.NODE_ENV === 'development' ? 'http://api.story_1146.xxx.test.xxx.com/v1' : 'http://api.story_1146.xxx.test.xxx.com/v1'// 'http://api.xxx.com/v1'
 
 export const whiteList = ['/login', '/error/403', '/error/404'];	// 无需授权的白名单
