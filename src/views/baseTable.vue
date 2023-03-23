@@ -11,6 +11,7 @@
 			<div class="handle-box">
 				<el-button
 					type="primary"
+					size="small"
 					icon="el-icon-delete"
 					class="handle-del mr10"
 					@click="delAllSelection"
@@ -20,6 +21,7 @@
 				<el-select
 					v-model="query.address"
 					placeholder="地址"
+					size="small"
 					class="handle-select mr10"
 				>
 					<el-option
@@ -36,10 +38,12 @@
 				<el-input
 					v-model="query.name"
 					placeholder="用户名"
+					size="small"
 					class="handle-input mr10"
 				/>
 				<el-button
 					type="primary"
+					size="small"
 					icon="el-icon-search"
 					@click="handleSearch"
 				>
@@ -51,6 +55,7 @@
 				:data="tableData"
 				border
 				class="table"
+				:height="800"
 				header-cell-class-name="table-header"
 				@selection-change="handleSelectionChange"
 			>
@@ -274,6 +279,9 @@ export default {
 </script>
 
 <style scoped>
+/deep/ .el-pagination .el-icon{
+	display: inline-block !important;
+}
 .handle-box {
     margin-bottom: 20px;
 }
@@ -289,6 +297,7 @@ export default {
 .table {
     width: 100%;
     font-size: 14px;
+		height: calc(100vh - 320px) !important;
 }
 .red {
     color: #ff0000;
