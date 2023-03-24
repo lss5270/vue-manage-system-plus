@@ -1,21 +1,24 @@
 <template>
 	<div class="">
-		<p>因vue3.0的md支持不是很完善，故组织机构逻辑展示--md文件显示暂未完成。如有需要请自行阅览org下的md文件</p>
 		<!-- <vue-markdown :source="mdSource" /> -->
+		<markdown />
 	</div>
 </template>
 
 <script>
 import { reactive, onMounted, ref, toRefs } from 'vue'
 // import VueMarkdown from 'vue-markdown'
-/* import readme from './README.md'
-console.log(readme) */
+import markdown from './README.md'
+import 'highlight.js/styles/github.css'
+import 'github-markdown-css'
+
 export default {
 	name: 'OrgDemo',
 	title: '组织机构逻辑',
-	/* components: {
-		VueMarkdown
-	}, */
+	components: {
+		// VueMarkdown
+		markdown
+	},
 	data() {
 		return {
 			mdSource: '# 组织机构org逻辑梳理',
