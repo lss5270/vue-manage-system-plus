@@ -37,6 +37,7 @@ module.exports = {
 			}]
 		}
 	} */
+	parallel: false, // 是否为 Babel 或 TypeScript 使用 thread-loader。该选项在系统的 CPU 有多于一个内核时自动启用，仅作用于生产构建。
 	chainWebpack: config => {
 		config.module.rule('md')
       .test(/\.md/)
@@ -58,20 +59,6 @@ module.exports = {
 		// 	.use('markdown-loader')
 		// 	.loader('markdown-loader')
 		// 	.end()
-	
-		// config.module.rules.push({
-		// 	test: /\.md$/,
-		// 	use: [
-		// 		{
-		// 			loader: "html-loader"
-		// 		},
-		// 		{
-		// 			loader: "markdown-loader",
-		// 			options: {
-		// 			}
-		// 		}
-		// 	]
-		// })
 	}
 	
 }

@@ -1,7 +1,7 @@
 <template>
 	<div class="">
 		<!-- <vue-markdown :source="mdSource" /> -->
-		<markdown />
+		<markdown class="markdown-body" />
 	</div>
 </template>
 
@@ -40,4 +40,8 @@ export default {
 </script>
 
 <style>
+/* class'markdown-body'不能少否则样式不生效 */
+.markdown-body{
+	padding: 20px;
+}
 </style>
