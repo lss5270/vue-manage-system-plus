@@ -40,7 +40,7 @@
 						type="primary"
 						style="float: right"
 					>
-						+新增用户
+						+&nbsp;新增用户
 					</el-button>
 				</div>
 			</div>
