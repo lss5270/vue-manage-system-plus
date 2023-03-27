@@ -38,7 +38,7 @@
 					<el-button
 						size="mini"
 						type="primary"
-						style="float: right"
+						style="float: right;"
 					>
 						+&nbsp;新增用户
 					</el-button>
@@ -135,6 +135,7 @@ export default {
 				border: 1px solid #dfdfdf;
 				padding: 3px;
 				float: right;
+				cursor: pointer;
 			}
 		}
 		.dep_tree{
